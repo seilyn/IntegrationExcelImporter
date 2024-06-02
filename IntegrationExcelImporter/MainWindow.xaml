@@ -6,42 +6,78 @@
         xmlns:local="clr-namespace:IntegrationExcelImporter"
         xmlns:view="clr-namespace:IntegrationExcelImporter.View"
         xmlns:viewModel="clr-namespace:IntegrationExcelImporter.ViewModel"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="750" Width="1200">
+        xmlns:fa="http://schemas.fontawesome.io/icons/"
+        mc:Ignorable="d" WindowStyle="None"
+        Margin="0"
+        Padding="0"
+        Height="750" Width="1200">
     <!--뷰모델 바인딩-->
     <Window.DataContext>
-        <viewModel:FileImportGridViewModel />
+        <viewModel:MainViewModel />
     </Window.DataContext>
-    
+
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0.3*" />
+            <ColumnDefinition Width="0.2*"/>
             <ColumnDefinition Width="1*" />
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
+            <RowDefinition Height="0.07*" />
             <RowDefinition Height="0.23*" />
             <RowDefinition Height="1*" />
-            <RowDefinition Height="0.1*" />
+            <RowDefinition Height="0.05*" />
         </Grid.RowDefinitions>
 
-        <!--메뉴 바-->
-        <Grid Grid.Row="0" Grid.ColumnSpan="2">
+        <!--상단 상태 바-->
+        <Grid Grid.Row="0" Grid.ColumnSpan="3" Background="#4d4d4f">
+            <!--툴바-->
+            <Viewbox HorizontalAlignment="Right">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+
+                    <Button  HorizontalAlignment="Center" VerticalAlignment="Center" Background="Transparent" BorderBrush="Transparent">
+                        <fa:FontAwesome Icon="UserCircle"  FontSize="13" Foreground="White" />
+                    </Button>
+                    <!--라벨 추후 바인딩-->
+                    <Label Margin="0 0 30 0" Content="Admin님" FontSize="10" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" />
+
+                    <Button Style="{x:Null}" Width="30" Height="30" Margin="0 0 5 0" Background="Transparent" BorderBrush="Transparent" VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <fa:FontAwesome Icon="Minus" FontSize="11" Foreground="White"/>
+                    </Button>
+                    <Button  Style="{x:Null}" Width="30" Height="30" Margin="0 0 5 0" Background="Transparent" BorderBrush="Transparent" VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <fa:FontAwesome Icon="SquareOutline" FontSize="13" Foreground="White"/>
+                    </Button>
+                    <Button  Style="{x:Null}" Width="30" Height="30" Margin="0 0 5 0" Background="Transparent" BorderBrush="Transparent" VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <fa:FontAwesome Icon="PowerOff" FontSize="13" Foreground="White"/>
+                    </Button>
+                </StackPanel>
+            </Viewbox>
+
+            <Viewbox HorizontalAlignment="Center">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <!--버전 추후 바인딩 처리-->
+                    <Label Content="Integration Excel Importer VERSION 1.0.0.1" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="6" Foreground="White"></Label>
+                </StackPanel>
+            </Viewbox>
+        </Grid>
+
+        <!--메뉴바-->
+        <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Background="#e4e4e4">
             <view:MenuBar />
         </Grid>
 
-        <!--좌측 파일 선택 그리드-->
-        <Grid Grid.Row="1" Grid.Column="0">
+        <!--파일 그리드-->
+        <Grid Grid.Row="2" Grid.Column="0">
             <view:FileImportGrid />
         </Grid>
 
-        <!--중단 메인 작업 그리드-->
-        <Grid Grid.Row="1" Grid.Column="1">
-
+        <!--메인 컨텐츠-->
+        <Grid Grid.Row="2" Grid.Column="2" Background="#E4E4E4">
+            <view:MainContentsGrid />
         </Grid>
 
-        <!--하단 상태 바-->
-        <Grid Grid.Row="2" Grid.ColumnSpan="2">
+        <!--하단 상태 표시줄-->
+        <Grid Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Background="#4d4d4f">
 
         </Grid>
     </Grid>

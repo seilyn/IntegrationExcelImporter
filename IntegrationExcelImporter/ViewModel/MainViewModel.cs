@@ -14,7 +14,7 @@ using System.Windows.Input;
 
 namespace IntegrationExcelImporter.ViewModel
 {
-    public class FileImportGridViewModel : ObservableObjectBase<FileImportGridViewModel>
+    public class MainViewModel : ObservableObjectBase<MainViewModel>
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -37,7 +37,7 @@ namespace IntegrationExcelImporter.ViewModel
         }
 
         public ICommand OpenFileCommand { get; set; }
-        public FileImportGridViewModel()
+        public MainViewModel()
         {
             OpenFileCommand = new RelayCommand<object>(ExecuteOpenFileButton, CanOpenFileButton);
         }
@@ -71,7 +71,7 @@ namespace IntegrationExcelImporter.ViewModel
             {
                 return true;
             }
-            return obj is FileImportGridViewModel;
+            return obj is MainViewModel;
         }
 
     }

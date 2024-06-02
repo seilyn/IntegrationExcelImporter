@@ -58,11 +58,15 @@
     <Compile Include="Common\Log.cs" />
     <Compile Include="Common\ObservableObjectBase.cs" />
     <Compile Include="Common\RelayCommand.cs" />
+    <Compile Include="DataAccess\ExcelManager.cs" />
+    <Compile Include="Model\EduPlanGridInfo.cs" />
     <Compile Include="Model\FileProperty.cs" />
-    <Compile Include="ViewModel\FileImportGridViewModel.cs" />
-    <Compile Include="ViewModel\MenuBarViewModel.cs" />
+    <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="View\FileImportGrid.xaml.cs">
       <DependentUpon>FileImportGrid.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\MainContentsGrid.xaml.cs">
+      <DependentUpon>MainContentsGrid.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\MenuBar.xaml.cs">
       <DependentUpon>MenuBar.xaml</DependentUpon>
@@ -80,6 +84,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="View\FileImportGrid.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\MainContentsGrid.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -110,6 +118,69 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <None Include="TestData\%28월별%29 2024 교육훈련계획.xlsx" />
+    <None Include="TestData\01. 전략기획팀.xlsx" />
+    <None Include="TestData\02. 마케팅팀.xlsx" />
+    <None Include="TestData\03. 정보기술팀.xlsx" />
+    <None Include="TestData\04. 생산계획팀.xlsx" />
+    <None Include="TestData\05. 신사업개발팀.xlsx" />
+    <None Include="TestData\06. NBI영업팀.xlsx" />
+    <None Include="TestData\07. 글로벌운영팀.xlsx" />
+    <None Include="TestData\08. HR팀.xlsx" />
+    <None Include="TestData\09. 에코팀.xlsx" />
+    <None Include="TestData\10. 안전환경팀.xlsx" />
+    <None Include="TestData\11. 감사팀.xlsx" />
+    <None Include="TestData\12. 비서팀.xlsx" />
+    <None Include="TestData\13. SCM팀.xlsx" />
+    <None Include="TestData\14. 구매팀.xlsx" />
+    <None Include="TestData\15. 재무회계팀.xlsx" />
+    <None Include="TestData\16. 관리회계팀.xlsx" />
+    <None Include="TestData\17. 영업지원팀.xlsx" />
+    <None Include="TestData\18. 기구설계지원팀.xlsx" />
+    <None Include="TestData\19. 기술서비스팀.xlsx" />
+    <None Include="TestData\20. 상품개발운영팀.xlsx" />
+    <None Include="TestData\21. 서울유통영업팀.xlsx" />
+    <None Include="TestData\22. 수원유통영업팀.xlsx" />
+    <None Include="TestData\23. 대구유통영업팀.xlsx" />
+    <None Include="TestData\24. 부산유통영업팀.xlsx" />
+    <None Include="TestData\25. 인천영업팀.xlsx" />
+    <None Include="TestData\26. 천안영업팀.xlsx" />
+    <None Include="TestData\27. 대전영업팀.xlsx" />
+    <None Include="TestData\28. 광주영업팀.xlsx" />
+    <None Include="TestData\29. 울산영업팀.xlsx" />
+    <None Include="TestData\30. 서울영업팀.xlsx" />
+    <None Include="TestData\31. 수원영업팀.xlsx" />
+    <None Include="TestData\32. 대구영업팀.xlsx" />
+    <None Include="TestData\33. 창원영업팀.xlsx" />
+    <None Include="TestData\34. 레일공정팀.xlsx" />
+    <None Include="TestData\35. 블록공정팀.xlsx" />
+    <None Include="TestData\36. 제품출하팀.xlsx" />
+    <None Include="TestData\37. 생산1팀.xlsx" />
+    <None Include="TestData\38. 생산2팀.xlsx" />
+    <None Include="TestData\39. 품질보증팀%28Motion생산%29.xlsx" />
+    <None Include="TestData\40. 자동화1팀.xlsx" />
+    <None Include="TestData\41. 자동화2팀.xlsx" />
+    <None Include="TestData\42. 제어팀.xlsx" />
+    <None Include="TestData\43. 설비기술팀.xlsx" />
+    <None Include="TestData\44. 관리팀.xlsx" />
+    <None Include="TestData\45. 생산관리팀.xlsx" />
+    <None Include="TestData\46. 사업관리팀.xlsx" />
+    <None Include="TestData\47. 외주개발팀.xlsx" />
+    <None Include="TestData\48. 디바이스영업팀.xlsx" />
+    <None Include="TestData\49. 로보틱스팀.xlsx" />
+    <None Include="TestData\50. OEM팀.xlsx" />
+    <None Include="TestData\51. 로봇제어팀.xlsx" />
+    <None Include="TestData\52. 공정장비팀.xlsx" />
+    <None Include="TestData\53. 생산팀.xlsx" />
+    <None Include="TestData\54. 품질보증팀%28평택사업장%29.xlsx" />
+    <None Include="TestData\55. 시스템기술팀.xlsx" />
+    <None Include="TestData\56. 시스템운영팀.xlsx" />
+    <None Include="TestData\57. 시스템개발팀.xlsx" />
+    <None Include="TestData\58. 머신비전팀.xlsx" />
+    <None Include="TestData\59. 신성장개발센터.xlsx" />
+    <None Include="TestData\60. 솔루션서비스팀.xlsx" />
+    <None Include="TestData\61. 솔루션영업팀.xlsx" />
+    <None Include="TestData\62. 솔루션개발팀.xlsx" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -125,10 +196,15 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
+    <PackageReference Include="EPPlus">
+      <Version>7.1.3</Version>
+    </PackageReference>
+    <PackageReference Include="FontAwesome.WPF">
+      <Version>4.7.0.9</Version>
+    </PackageReference>
     <PackageReference Include="MaterialDesignThemes">
-      <Version>5.0.0</Version>
+      <Version>5.0.1-ci649</Version>
     </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
