@@ -1,16 +1,17 @@
 ﻿using IntegrationExcelImporter.Common;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace IntegrationExcelImporter.Model
 {
-    public class FileProperty : ObservableObjectBase<FileProperty>
+    public class Files : ObservableObjectBase<Files>
     {
-        private static readonly FileProperty _instance = new FileProperty();
-        public static FileProperty Instance
+        private static readonly Files _instance = new Files();
+        public static Files Instance
         {
             get { return _instance; }
         }
@@ -28,19 +29,17 @@ namespace IntegrationExcelImporter.Model
             }
         }
 
-        /// <summary>
-        /// 파일 확장자
-        /// </summary>
-        private string _fileExtension = string.Empty;
-        public string FileExtension
+        private string _filePath = string.Empty;
+        public string FilePath
         {
-            get { return _fileExtension; }
+            get { return _filePath; }
             set
             {
-                _fileExtension = value;
-                OnPropertyChanged(p => p.FileExtension);
+                _filePath = value;
+                OnPropertyChanged(p => p.FilePath);
             }
         }
+       
 
     }
 }

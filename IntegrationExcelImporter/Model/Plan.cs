@@ -3,7 +3,7 @@ using System;
 
 namespace IntegrationExcelImporter.Model
 {
-    public class EduPlanGridInfo : ObservableObjectBase<EduPlanGridInfo>
+    public class Plan : ObservableObjectBase<Plan>
     {
         private string _kindOfEducation;
         public string KindOfEducation

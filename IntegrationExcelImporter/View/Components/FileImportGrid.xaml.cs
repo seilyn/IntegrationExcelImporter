@@ -1,4 +1,5 @@
 ﻿using IntegrationExcelImporter.ViewModel;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace IntegrationExcelImporter.View
@@ -11,6 +12,11 @@ namespace IntegrationExcelImporter.View
         public FileImportGrid()
         {
             InitializeComponent();
+        }
+
+        private void DataGrid_LoadingRow(object sender, DataGridRowEventArgs e)
+        {
+            e.Row.Header = (e.Row.GetIndex() + 1).ToString();
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using IntegrationExcelImporter.Model;
+using IntegrationExcelImporter.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -17,17 +18,18 @@ using System.Windows.Shapes;
 
 namespace IntegrationExcelImporter.View
 {
-    /// <summary>
-    /// MainContentsGrid.xaml에 대한 상호 작용 논리
-    /// </summary>
     public partial class MainContentsGrid : UserControl
     {
         public MainContentsGrid()
         {
             InitializeComponent();
-            var excelManager = new ExcelManager();
-            List<EduPlanGridInfo> eduPlanGridInfoList = excelManager.ReadExcelToEduPlanGridInfo();
-            _dataGrid.ItemsSource = eduPlanGridInfoList;
+
+        }
+
+        private void DataGrid_LoadingRow(object sender, DataGridRowEventArgs e)
+        {
+            e.Row.Header = (e.Row.GetIndex() + 1).ToString();
+
         }
     }
 }

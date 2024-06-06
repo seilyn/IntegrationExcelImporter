@@ -59,18 +59,27 @@
     <Compile Include="Common\ObservableObjectBase.cs" />
     <Compile Include="Common\RelayCommand.cs" />
     <Compile Include="DataAccess\ExcelManager.cs" />
-    <Compile Include="Model\EduPlanGridInfo.cs" />
-    <Compile Include="Model\FileProperty.cs" />
+    <Compile Include="Model\Plan.cs" />
+    <Compile Include="Model\Files.cs" />
+    <Compile Include="Model\Setting.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
-    <Compile Include="View\FileImportGrid.xaml.cs">
+    <Compile Include="ViewModel\SettingViewModel.cs" />
+    <Compile Include="View\Components\FileImportGrid.xaml.cs">
       <DependentUpon>FileImportGrid.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\MainContentsGrid.xaml.cs">
+    <Compile Include="View\Components\MainContentsGrid.xaml.cs">
       <DependentUpon>MainContentsGrid.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\MenuBar.xaml.cs">
+    <Compile Include="View\Components\MenuBar.xaml.cs">
       <DependentUpon>MenuBar.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Windows\SettingView.xaml.cs">
+      <DependentUpon>SettingView.xaml</DependentUpon>
+    </Compile>
+    <Page Include="MainResourceDictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -83,15 +92,19 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="View\FileImportGrid.xaml">
+    <Page Include="View\Components\FileImportGrid.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\MainContentsGrid.xaml">
+    <Page Include="View\Components\MainContentsGrid.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\MenuBar.xaml">
+    <Page Include="View\Components\MenuBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Windows\SettingView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -205,6 +218,9 @@
     </PackageReference>
     <PackageReference Include="MaterialDesignThemes">
       <Version>5.0.1-ci649</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf">
+      <Version>1.1.122</Version>
     </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

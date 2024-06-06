@@ -7,14 +7,8 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid Margin="10">
-        <DataGrid x:Name="_dataGrid" AutoGenerateColumns="False" Style="{StaticResource MaterialDesignDataGrid}" IsReadOnly="True" GridLinesVisibility="Horizontal">
+        <DataGrid CanUserAddRows="False" ItemsSource="{Binding EduPlanGridInfoList}" LoadingRow="DataGrid_LoadingRow" >
             
-            <!--<DataGrid.CellStyle>
-                <Style TargetType="DataGridCell">
-                    <Setter Property="BorderThickness" Value="0,0,1,0"/>
-                    <Setter Property="BorderBrush" Value="#4d4d4f"/>
-                </Style>
-            </DataGrid.CellStyle>-->
             <DataGrid.Columns>
                 <DataGridTextColumn Header="교육종류" Binding="{Binding KindOfEducation}" />
                 <DataGridTextColumn Header="교육과정명" Binding="{Binding EducationName}" />

@@ -8,9 +8,7 @@
         xmlns:viewModel="clr-namespace:IntegrationExcelImporter.ViewModel"
         xmlns:fa="http://schemas.fontawesome.io/icons/"
         mc:Ignorable="d" WindowStyle="None"
-        Margin="0"
-        Padding="0"
-        Height="750" Width="1200">
+        Height="1000" Width="1600">
     <!--뷰모델 바인딩-->
     <Window.DataContext>
         <viewModel:MainViewModel />
@@ -23,8 +21,8 @@
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="0.07*" />
-            <RowDefinition Height="0.23*" />
+            <RowDefinition Height="0.04*" />
+            <RowDefinition Height="0.17*" />
             <RowDefinition Height="1*" />
             <RowDefinition Height="0.05*" />
         </Grid.RowDefinitions>
@@ -41,14 +39,14 @@
                     <!--라벨 추후 바인딩-->
                     <Label Margin="0 0 30 0" Content="Admin님" FontSize="10" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" />
 
-                    <Button Style="{x:Null}" Width="30" Height="30" Margin="0 0 5 0" Background="Transparent" BorderBrush="Transparent" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <Button Style="{x:Null}" Width="30" Height="30" Margin="0 0 5 0" Background="Transparent" BorderBrush="Transparent" VerticalAlignment="Center" HorizontalAlignment="Center" Command="{Binding WindowsMinimizeCommand }">
                         <fa:FontAwesome Icon="Minus" FontSize="11" Foreground="White"/>
                     </Button>
-                    <Button  Style="{x:Null}" Width="30" Height="30" Margin="0 0 5 0" Background="Transparent" BorderBrush="Transparent" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <Button  Style="{x:Null}" Width="30" Height="30" Margin="0 0 5 0" Background="Transparent" BorderBrush="Transparent" VerticalAlignment="Center" HorizontalAlignment="Center" Command="{Binding WindowsMaximizeCommand }">
                         <fa:FontAwesome Icon="SquareOutline" FontSize="13" Foreground="White"/>
                     </Button>
-                    <Button  Style="{x:Null}" Width="30" Height="30" Margin="0 0 5 0" Background="Transparent" BorderBrush="Transparent" VerticalAlignment="Center" HorizontalAlignment="Center">
-                        <fa:FontAwesome Icon="PowerOff" FontSize="13" Foreground="White"/>
+                    <Button  Style="{x:Null}" Width="30" Height="30" Margin="0 0 5 0" Background="Transparent" BorderBrush="Transparent" VerticalAlignment="Center" HorizontalAlignment="Center" Command="{Binding ApplicationCloseCommand }">
+                        <fa:FontAwesome Icon="PowerOff" FontSize="13" Foreground="White" />
                     </Button>
                 </StackPanel>
             </Viewbox>
@@ -62,8 +60,13 @@
         </Grid>
 
         <!--메뉴바-->
-        <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Background="#e4e4e4">
-            <view:MenuBar />
+        <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
+            <Border BorderBrush="LightGray" BorderThickness="1" CornerRadius="5" Background="LightGray" Margin="10">
+                <Grid >
+                    <view:MenuBar />
+                </Grid>
+            </Border>
+            
         </Grid>
 
         <!--파일 그리드-->
@@ -72,7 +75,7 @@
         </Grid>
 
         <!--메인 컨텐츠-->
-        <Grid Grid.Row="2" Grid.Column="2" Background="#E4E4E4">
+        <Grid Grid.Row="2" Grid.Column="2" >
             <view:MainContentsGrid />
         </Grid>
 
