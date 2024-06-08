@@ -1,7 +1,7 @@
-﻿using IntegrationExcelImporter.Common;
+﻿using IntegrationExcelImporter.Common.Utility;
 using System;
 
-namespace IntegrationExcelImporter.Model
+namespace IntegrationExcelImporter.Core.Model
 {
     public class Plan : ObservableObjectBase<Plan>
     {

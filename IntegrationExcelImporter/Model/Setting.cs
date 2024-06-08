@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IntegrationExcelImporter.Model
+namespace IntegrationExcelImporter.Core.Model
 {
     public class Setting
     {

@@ -1,8 +1,8 @@
-﻿using IntegrationExcelImporter.ViewModel;
+﻿using IntegrationExcelImporter.Core.ViewModel;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace IntegrationExcelImporter.View
+namespace IntegrationExcelImporter.Core.View.Components
 {
     /// <summary>
     /// FileImportGrid.xaml에 대한 상호 작용 논리

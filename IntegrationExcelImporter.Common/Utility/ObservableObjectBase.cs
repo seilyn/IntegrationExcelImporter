@@ -6,7 +6,7 @@ using System.Linq.Expressions;
 using System.Reflection;
 using System.Text;
 
-namespace IntegrationExcelImporter.Common
+namespace IntegrationExcelImporter.Common.Utility
 {
     /// <summary>
     /// INotifyPropertyChanged 인터페이스를 구현하는 추상클래스 입니다.

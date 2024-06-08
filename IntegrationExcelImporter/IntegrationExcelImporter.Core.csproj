@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{857AB7F2-77E2-4FAB-B1A2-874115661868}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>IntegrationExcelImporter</RootNamespace>
-    <AssemblyName>IntegrationExcelImporter</AssemblyName>
+    <RootNamespace>IntegrationExcelImporter.Core</RootNamespace>
+    <AssemblyName>IntegrationExcelImporter.Core</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -55,9 +55,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Common\Log.cs" />
-    <Compile Include="Common\ObservableObjectBase.cs" />
-    <Compile Include="Common\RelayCommand.cs" />
+    <Compile Include="ViewModel\RelayCommand.cs" />
     <Compile Include="DataAccess\ExcelManager.cs" />
     <Compile Include="Model\Plan.cs" />
     <Compile Include="Model\Files.cs" />
@@ -76,7 +74,11 @@
     <Compile Include="View\Windows\SettingView.xaml.cs">
       <DependentUpon>SettingView.xaml</DependentUpon>
     </Compile>
-    <Page Include="MainResourceDictionary.xaml">
+    <Page Include="Resources\ButtonStyleDictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\DataGridStyleDictionary.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -222,6 +224,15 @@
     <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf">
       <Version>1.1.122</Version>
     </PackageReference>
+    <PackageReference Include="SQLite">
+      <Version>3.13.0</Version>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\IntegrationExcelImporter.Common\IntegrationExcelImporter.Common.csproj">
+      <Project>{fafb2680-30be-4962-9b5b-df275db9d7d4}</Project>
+      <Name>IntegrationExcelImporter.Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,24 +1,31 @@
-﻿using IntegrationExcelImporter.Common;
-using IntegrationExcelImporter.Model;
+﻿using IntegrationExcelImporter.Common.DataAccess;
+using IntegrationExcelImporter.Common.Utility;
+using IntegrationExcelImporter.Core.DataAccess;
+using IntegrationExcelImporter.Core.Model;
+using IntegrationExcelImporter.Core.View;
+using IntegrationExcelImporter.Core.View.Windows;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.IO;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Input;
+using System.Threading;
 
-namespace IntegrationExcelImporter.ViewModel
+using System.Windows;
+using System.Windows.Input;
+using System.Runtime.CompilerServices;
+
+
+namespace IntegrationExcelImporter.Core.ViewModel
 {
     public class MainViewModel : ObservableObjectBase<MainViewModel>
     {
         public event PropertyChangedEventHandler PropertyChanged;
         ExcelManager excelManager = new ExcelManager();
 
-        private ObservableCollection<Model.Files> _files;
-        public ObservableCollection<Model.Files> Files
+        private ObservableCollection<Files> _files;
+        public ObservableCollection<Files> Files
         {
             get
             {
@@ -52,9 +59,10 @@ namespace IntegrationExcelImporter.ViewModel
         public ICommand ApplicationCloseCommand { get; set; }
         public ICommand WindowsMaximizeCommand { get; set; }
         public ICommand WindowsMinimizeCommand { get; set; }
+        public ICommand OpenSettingWindowCommand { get; set; }
 
-        private Model.Files _selectedFile;
-        public Model.Files SelectedFile
+        private Files _selectedFile;
+        public Files SelectedFile
         {
             get => _selectedFile;
             set
@@ -74,8 +82,20 @@ namespace IntegrationExcelImporter.ViewModel
             ApplicationCloseCommand = new RelayCommand<object>(ExecuteApplicationClose, CanApplicationClose);
             WindowsMaximizeCommand = new RelayCommand<object>(ExecuteWindowsMaximize, CanWindowsMaximize);
             WindowsMinimizeCommand = new RelayCommand<object>(ExecuteWindowsMinimize, CanWindowsMinimize);
+            OpenSettingWindowCommand = new RelayCommand<object>(ExecuteOpenSettingWindow, CanOpenSettingWindow);
             EduPlanGridInfoList = new ObservableCollection<Plan>();
-            Application.Current.MainWindow.DragMove();
+        }
+  
+
+        private void ExecuteOpenSettingWindow(object obj)
+        {
+            SettingView settingView = new SettingView();
+            settingView.ShowDialog();
+        }
+
+        private bool CanOpenSettingWindow(object obj)
+        {
+            return true;
         }
 
         private void ExecuteWindowsMinimize(object obj)
@@ -156,5 +176,8 @@ namespace IntegrationExcelImporter.ViewModel
         {
             return true;
         }
+
+       
+
     }
 }

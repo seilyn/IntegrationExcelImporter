@@ -1,4 +1,5 @@
 ﻿using IntegrationExcelImporter.Common;
+using IntegrationExcelImporter.Common.Utility;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -6,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IntegrationExcelImporter.Model
+namespace IntegrationExcelImporter.Core.Model
 {
     public class Files : ObservableObjectBase<Files>
     {

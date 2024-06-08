@@ -5,7 +5,7 @@ using System.IO;
 using System.Reflection;
 
 
-namespace IntegrationExcelImporter.Common
+namespace IntegrationExcelImporter.Common.Utility
 {
     public static class Log
     {

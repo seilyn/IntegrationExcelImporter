@@ -1,4 +1,5 @@
-﻿using System;
+﻿using IntegrationExcelImporter.Core.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,7 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace IntegrationExcelImporter.View
+namespace IntegrationExcelImporter.Core.View.Windows
 {
     /// <summary>
     /// SettingView.xaml에 대한 상호 작용 논리
@@ -22,6 +23,13 @@ namespace IntegrationExcelImporter.View
         public SettingView()
         {
             InitializeComponent();
+            SettingViewModel settingViewModel = new SettingViewModel();
+            DataContext = settingViewModel;
+        }
+
+        private void Grid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            DragMove();
         }
     }
 }

@@ -1,41 +1,39 @@
-﻿<UserControl x:Class="IntegrationExcelImporter.View.MainContentsGrid"
+﻿<UserControl x:Class="IntegrationExcelImporter.Core.View.Components.MainContentsGrid"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:IntegrationExcelImporter.View"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid Margin="10">
         <DataGrid CanUserAddRows="False" ItemsSource="{Binding EduPlanGridInfoList}" LoadingRow="DataGrid_LoadingRow" >
-            
             <DataGrid.Columns>
-                <DataGridTextColumn Header="교육종류" Binding="{Binding KindOfEducation}" />
-                <DataGridTextColumn Header="교육과정명" Binding="{Binding EducationName}" />
-                <DataGridTextColumn Header="교육일수" Binding="{Binding EducationDay}" />
-                <DataGridTextColumn Header="교육시간" Binding="{Binding EducationTime}" />
-                <DataGridTextColumn Header="교육기관" Binding="{Binding EducationAgency}" />
-                <DataGridTextColumn Header="소속팀" Binding="{Binding Team}" />
-                <DataGridTextColumn Header="직위" Binding="{Binding Position}" />
-                <DataGridTextColumn Header="성명" Binding="{Binding Name}" />
-                <DataGridTextColumn Header="수강료" Binding="{Binding TuitionFee}" />
-                <DataGridTextColumn Header="출장비" Binding="{Binding TravelFee}" />
-                <DataGridTextColumn Header="계" Binding="{Binding SumOfFee}" />
-                <DataGridTextColumn Header="1" Binding="{Binding January}" />
-                <DataGridTextColumn Header="2" Binding="{Binding Faburary}" />
-                <DataGridTextColumn Header="3" Binding="{Binding March}" />
-                <DataGridTextColumn Header="4" Binding="{Binding April}" />
-                <DataGridTextColumn Header="5" Binding="{Binding May}" />
-                <DataGridTextColumn Header="6" Binding="{Binding June}" />
-                <DataGridTextColumn Header="7" Binding="{Binding July}" />
-                <DataGridTextColumn Header="8" Binding="{Binding August}" />
-                <DataGridTextColumn Header="9" Binding="{Binding September}" />
-                <DataGridTextColumn Header="10" Binding="{Binding October}" />
-                <DataGridTextColumn Header="11" Binding="{Binding November}" />
-                <DataGridTextColumn Header="12" Binding="{Binding December}" />
-                <DataGridTextColumn Header="교육장소" Binding="{Binding Spot}" />
-                <DataGridTextColumn Header="교육신청사유" Binding="{Binding Reason}" />
-                <DataGridTextColumn Header="실무적용계획" Binding="{Binding Planning}" />
+                <DataGridTextColumn Header="교육종류" Binding="{Binding KindOfEducation}" Width="Auto" />
+                <DataGridTextColumn Header="교육과정명" Binding="{Binding EducationName}" Width="Auto" />
+                <DataGridTextColumn Header="교육일수" Binding="{Binding EducationDay}" Width="Auto" />
+                <DataGridTextColumn Header="교육시간" Binding="{Binding EducationTime}" Width="Auto" />
+                <DataGridTextColumn Header="교육기관" Binding="{Binding EducationAgency}" Width="Auto" />
+                <DataGridTextColumn Header="소속팀" Binding="{Binding Team}" Width="Auto" />
+                <DataGridTextColumn Header="직위" Binding="{Binding Position}" Width="Auto" />
+                <DataGridTextColumn Header="성명" Binding="{Binding Name}" Width="Auto" />
+                <DataGridTextColumn Header="수강료" Binding="{Binding TuitionFee}" Width="Auto" />
+                <DataGridTextColumn Header="출장비" Binding="{Binding TravelFee}" Width="Auto" />
+                <DataGridTextColumn Header="계" Binding="{Binding SumOfFee}" Width="Auto" />
+                <DataGridTextColumn Header="1" Binding="{Binding January}" Width="Auto" />
+                <DataGridTextColumn Header="2" Binding="{Binding Faburary}" Width="Auto" />
+                <DataGridTextColumn Header="3" Binding="{Binding March}" Width="Auto" />
+                <DataGridTextColumn Header="4" Binding="{Binding April}" Width="Auto" />
+                <DataGridTextColumn Header="5" Binding="{Binding May}" Width="Auto" />
+                <DataGridTextColumn Header="6" Binding="{Binding June}" Width="Auto" />
+                <DataGridTextColumn Header="7" Binding="{Binding July}" Width="Auto" />
+                <DataGridTextColumn Header="8" Binding="{Binding August}" Width="Auto" />
+                <DataGridTextColumn Header="9" Binding="{Binding September}" Width="Auto" />
+                <DataGridTextColumn Header="10" Binding="{Binding October}" Width="Auto" />
+                <DataGridTextColumn Header="11" Binding="{Binding November}" Width="Auto" />
+                <DataGridTextColumn Header="12" Binding="{Binding December}" Width="Auto" />
+                <DataGridTextColumn Header="교육장소" Binding="{Binding Spot}" Width="Auto" />
+                <DataGridTextColumn Header="교육신청사유" Binding="{Binding Reason}" Width="Auto" />
+                <DataGridTextColumn Header="실무적용계획" Binding="{Binding Planning}" Width="Auto" />
             </DataGrid.Columns>
         </DataGrid>
     </Grid>
