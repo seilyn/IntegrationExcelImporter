@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Windows;
 using IntegrationExcelImporter.Common;
@@ -11,20 +12,18 @@ namespace IntegrationExcelImporter.Core.DataAccess
 {
     public class ExcelManager
     {
-        public List<Plan> ReadExcelToEduPlanGridInfo(string filePath)
+        public List<Plan> ReadEachExcelData(string filePath)
         {
             List<Plan> eduPlanList = new List<Plan>();
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
 
             using (var package = new ExcelPackage(new FileInfo(Path.GetFullPath(filePath).Trim())))
             {
-
-
                 ExcelWorksheet worksheet = null;
 
+                // Find the worksheet with "교육훈련" in its name
                 foreach (var sheet in package.Workbook.Worksheets)
                 {
-                    // 해당 키워드는 설정으로 뺀다.
                     if (sheet.Name.Contains("교육훈련"))
                     {
                         worksheet = sheet;
@@ -36,16 +35,21 @@ namespace IntegrationExcelImporter.Core.DataAccess
                 {
                     Log.Error("파일을 찾을 수 없습니다 : " + filePath);
                     throw new Exception("Worksheet not found.");
-
                 }
 
-                // 컬럼 AA는 27번째 임.
                 const int endColumn = 27;
 
-                // 7행부터 시작 한다.
+                // Start reading from row 7
                 for (var rowNumber = 7; rowNumber <= worksheet.Dimension.End.Row; rowNumber++)
                 {
+                    // Check if A column is empty
+                    if (string.IsNullOrWhiteSpace(worksheet.Cells[rowNumber, 1].Text))
+                    {
+                        break;
+                    }
+
                     bool hasData = false;
+                    // Check if the row has any non-empty cells
                     for (int column = 1; column <= endColumn; column++)
                     {
                         if (!string.IsNullOrWhiteSpace(worksheet.Cells[rowNumber, column].Text))
@@ -54,7 +58,15 @@ namespace IntegrationExcelImporter.Core.DataAccess
                             break;
                         }
                     }
+
+                    // If the row is empty, stop reading further
                     if (!hasData) break;
+
+                    // Check if the "계" column is 0.0 and skip the row if true
+                    if (worksheet.Cells[rowNumber, 12].Text == "0.0")
+                    {
+                        continue;
+                    }
 
                     var row = worksheet.Cells[rowNumber, 1, rowNumber, endColumn];
                     Plan eduPlan = new Plan
@@ -91,6 +103,18 @@ namespace IntegrationExcelImporter.Core.DataAccess
             }
 
             return eduPlanList;
+        }
+
+        public List<Plan> MergeAllFileData(ObservableCollection<Files> fileList)
+        {
+            List<Plan> planList = new List<Plan>();
+
+            foreach (Files file in fileList)
+            {
+                planList.AddRange(ReadEachExcelData(file.FilePath));
+            }
+
+            return planList;
         }
     }
 }

@@ -53,6 +53,17 @@ namespace IntegrationExcelImporter.Core.ViewModel
             }
         }
 
+        private ObservableCollection<Plan> _mergedEduPlanGridList;
+        public ObservableCollection<Plan> MergedEduPlanGridList
+        {
+            get => _mergedEduPlanGridList;
+            set
+            {
+                _mergedEduPlanGridList = value;
+                OnPropertyChanged(p => p.MergedEduPlanGridList);
+            }
+        }
+
         public ICommand OpenFileCommand { get; set; }
         public ICommand SelectFileCommand { get; set; }
         public ICommand FileImportGridLoadingRowCommand { get; set; }
@@ -60,6 +71,7 @@ namespace IntegrationExcelImporter.Core.ViewModel
         public ICommand WindowsMaximizeCommand { get; set; }
         public ICommand WindowsMinimizeCommand { get; set; }
         public ICommand OpenSettingWindowCommand { get; set; }
+        public ICommand MergeFileCommand { get; set; }
 
         private Files _selectedFile;
         public Files SelectedFile
@@ -83,9 +95,25 @@ namespace IntegrationExcelImporter.Core.ViewModel
             WindowsMaximizeCommand = new RelayCommand<object>(ExecuteWindowsMaximize, CanWindowsMaximize);
             WindowsMinimizeCommand = new RelayCommand<object>(ExecuteWindowsMinimize, CanWindowsMinimize);
             OpenSettingWindowCommand = new RelayCommand<object>(ExecuteOpenSettingWindow, CanOpenSettingWindow);
+            MergeFileCommand = new RelayCommand<object>(ExecuteMergeFile, CanExecuteMergeFile);
             EduPlanGridInfoList = new ObservableCollection<Plan>();
+            MergedEduPlanGridList = new ObservableCollection<Plan>();
         }
-  
+
+        private void ExecuteMergeFile(object obj)
+        {
+            List<Plan> mergedPlanList = excelManager.MergeAllFileData(Files);
+
+            foreach (Plan plan in mergedPlanList)
+            {
+                MergedEduPlanGridList.Add(plan);
+            }
+        }
+
+        private bool CanExecuteMergeFile(object obj)
+        {
+            return true;
+        }
 
         private void ExecuteOpenSettingWindow(object obj)
         {
@@ -132,7 +160,7 @@ namespace IntegrationExcelImporter.Core.ViewModel
         {
             if (SelectedFile != null)
             {
-                List<Plan> eduPlanList = excelManager.ReadExcelToEduPlanGridInfo(SelectedFile.FilePath);
+                List<Plan> eduPlanList = excelManager.ReadEachExcelData(SelectedFile.FilePath);
                 EduPlanGridInfoList.Clear();
 
                 foreach (var item in eduPlanList)

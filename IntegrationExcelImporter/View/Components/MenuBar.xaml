@@ -21,10 +21,10 @@
                 </Button>
                 <TextBlock Foreground="#4d4d4f" Text="폴더 열기" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 5 0 0"/>
             </StackPanel>
-            
+
             <StackPanel Orientation="Horizontal">
                 <StackPanel Margin="10 0 0 0" Orientation="Vertical">
-                    <Button Background="Transparent" Foreground="#4d4d4f" BorderThickness="0"  Width="60" Height="60" Command="{Binding OpenFileCommand}" >
+                    <Button Background="Transparent" Foreground="#4d4d4f" BorderThickness="0"  Width="60" Height="60" Command="{Binding MergeFileCommand}" >
                         <fa:FontAwesome Icon="Play" FontSize="40" />
                     </Button>
                     <TextBlock Foreground="#4d4d4f" Text="통합하기" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 5 0 0"/>
@@ -37,14 +37,33 @@
                 </Button>
                 <TextBlock Foreground="#4d4d4f" Text="설 정" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 5 0 0"/>
             </StackPanel>
-            
+
             <Separator Width="1.5" Height="Auto" Margin="10 0 0 0" Background="#C2BFBC" Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" >
 
             </Separator>
-            
+
+            <StackPanel Margin="10 0 0 0" Orientation="Vertical">
+                <Button Background="Transparent" Foreground="#4d4d4f" BorderThickness="0"  Width="60" Height="60" Command="{Binding OpenSettingWindowCommand}" >
+                    <fa:FontAwesome Icon="SortAmountAsc" FontSize="40" />
+                </Button>
+                <TextBlock Foreground="#4d4d4f" Text="정렬" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 5 0 0"/>
+            </StackPanel>
+
+
+            <StackPanel Margin="10 0 0 0" Orientation="Vertical">
+                <Button Background="Transparent" Foreground="#4d4d4f" BorderThickness="0"  Width="60" Height="60" Command="{Binding OpenSettingWindowCommand}" >
+                    <fa:FontAwesome Icon="Gears" FontSize="40" />
+                </Button>
+                <TextBlock Foreground="#4d4d4f" Text="정렬옵션" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 5 0 0"/>
+            </StackPanel>
+
+            <Separator Width="1.5" Height="Auto" Margin="10 0 0 0" Background="#C2BFBC" Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" >
+
+            </Separator>
+
             <StackPanel Margin="10 0 0 0" Orientation="Vertical">
                 <Button Background="Transparent" Foreground="#4d4d4f" BorderThickness="0"  Width="60" Height="60" >
-                    <fa:FontAwesome Icon="Terminal" FontSize="40" />
+                    <fa:FontAwesome Icon="Gears" FontSize="40" />
                 </Button>
                 <TextBlock Foreground="#4d4d4f" Text="개발자도구" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 5 0 0"/>
             </StackPanel>
@@ -57,8 +76,5 @@
             </StackPanel>
 
         </StackPanel>
-
-        
-
     </Grid>
 </UserControl>

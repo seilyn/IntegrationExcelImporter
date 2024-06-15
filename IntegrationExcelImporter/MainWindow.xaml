@@ -97,7 +97,15 @@
 
         <!--메인 컨텐츠-->
         <Grid Grid.Row="3" Grid.Column="2" >
-            <view:MainContentsGrid />
+            <TabControl>
+                <TabItem Header="각각의 파일 리스트" IsSelected="True">
+                    
+                    <view:MainContentsGrid />
+                </TabItem>
+                <TabItem Header="통합 파일 리스트">
+                    <view:MergedContentsGrid />
+                </TabItem>
+            </TabControl>
         </Grid>
 
         <!--하단 상태 표시줄-->
