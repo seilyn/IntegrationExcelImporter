@@ -48,7 +48,6 @@ namespace IntegrationExcelImporter.Core.DataAccess
             {
                 ExcelWorksheet worksheet = null;
 
-                // Find the worksheet with "교육훈련" in its name
                 foreach (var sheet in package.Workbook.Worksheets)
                 {
                     if (sheet.Name.Contains("교육훈련"))
@@ -66,17 +65,15 @@ namespace IntegrationExcelImporter.Core.DataAccess
 
                 const int endColumn = 27;
 
-                // Start reading from row 7
                 for (var rowNumber = 7; rowNumber <= worksheet.Dimension.End.Row; rowNumber++)
                 {
-                    // Check if A column is empty
                     if (string.IsNullOrWhiteSpace(worksheet.Cells[rowNumber, 1].Text))
                     {
                         break;
                     }
 
                     bool hasData = false;
-                    // Check if the row has any non-empty cells
+
                     for (int column = 1; column <= endColumn; column++)
                     {
                         if (!string.IsNullOrWhiteSpace(worksheet.Cells[rowNumber, column].Text))
@@ -86,10 +83,8 @@ namespace IntegrationExcelImporter.Core.DataAccess
                         }
                     }
 
-                    // If the row is empty, stop reading further
                     if (!hasData) break;
 
-                    // Check if the "계" column is 0.0 and skip the row if true
                     if (worksheet.Cells[rowNumber, 12].Text == "0.0")
                     {
                         continue;
@@ -142,11 +137,11 @@ namespace IntegrationExcelImporter.Core.DataAccess
 
                 foreach (var plan in plans)
                 {
-                    uniquePlanSet.Add(plan); // HashSet에 추가하여 중복 방지
+                    uniquePlanSet.Add(plan); 
                 }
             }
 
-            return uniquePlanSet.ToList(); // HashSet을 List로 변환하여 반환
+            return uniquePlanSet.ToList(); 
         }
     }
 }
