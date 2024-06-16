@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31919.166
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntegrationExcelImporter.Core", "IntegrationExcelImporter\IntegrationExcelImporter.Core.csproj", "{857AB7F2-77E2-4FAB-B1A2-874115661868}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntegrationExcelImporter.Core", "IntegrationExcelImporter.Core\IntegrationExcelImporter.Core.csproj", "{857AB7F2-77E2-4FAB-B1A2-874115661868}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntegrationExcelImporter.Common", "IntegrationExcelImporter.Common\IntegrationExcelImporter.Common.csproj", "{FAFB2680-30BE-4962-9B5B-DF275DB9D7D4}"
 EndProject

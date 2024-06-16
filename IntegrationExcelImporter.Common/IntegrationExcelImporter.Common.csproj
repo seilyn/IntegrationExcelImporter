@@ -64,12 +64,15 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="Utility\CommonConverter.cs" />
-    <Compile Include="Utility\Enum.cs" />
-    <Compile Include="Utility\EnumBindingSourceExtension.cs" />
-    <Compile Include="Utility\EnumHelper.cs" />
-    <Compile Include="Utility\Log.cs" />
-    <Compile Include="Utility\ObservableObjectBase.cs" />
+    <Compile Include="Utility\Converter\EnumDescriptionTypeConverter.cs" />
+    <Compile Include="Utility\Converter\BoolToVisibilityConverter.cs" />
+    <Compile Include="Utility\Converter\ReverseBoolConverter.cs" />
+    <Compile Include="Utility\Converter\TypeToVisibilityConverter.cs" />
+    <Compile Include="Utility\Enum\Enum.cs" />
+    <Compile Include="Utility\Enum\EnumBindingSourceExtension.cs" />
+    <Compile Include="Utility\Enum\EnumHelper.cs" />
+    <Compile Include="Utility\CommonUtils\Log.cs" />
+    <Compile Include="Utility\CommonUtils\ObservableObjectBase.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

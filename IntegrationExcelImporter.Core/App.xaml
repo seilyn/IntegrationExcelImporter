@@ -1,0 +1,19 @@
+﻿<Application x:Class="IntegrationExcelImporter.Core.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:IntegrationExcelImporter.Core"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
+             xmlns:converters="clr-namespace:IntegrationExcelImporter.Common.Utility.Converter;assembly=IntegrationExcelImporter.Common"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+
+        <!--스타일-->
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Resources/DataGridStyleDictionary.xaml" />
+                <ResourceDictionary Source="Resources/ButtonStyleDictionary.xaml" />
+                <ResourceDictionary Source="Resources/TabControlStyleDictionary.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

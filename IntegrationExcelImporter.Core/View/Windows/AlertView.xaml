@@ -1,0 +1,60 @@
+﻿<Window x:Class="IntegrationExcelImporter.Core.View.Windows.AlertView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:IntegrationExcelImporter.Core.View.Windows"
+        xmlns:fa="http://schemas.fontawesome.io/icons/" xmlns:viewmodel="clr-namespace:IntegrationExcelImporter.Core.ViewModel" 
+        mc:Ignorable="d"
+        WindowStyle="None" Height="300" Width="700">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.18*" />
+            <RowDefinition Height="1*" />
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Background="#4d4d4f">
+            <TextBlock Text="알림" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White"/>
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1.5*" />
+                <RowDefinition Height="0.47* "/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0">
+                <StackPanel Orientation="Horizontal">
+                    <Button Width="100" Height="100" Background="Transparent" BorderBrush="Transparent" Visibility="{Binding Type, Converter={StaticResource TypeToVisibilityConverter}, ConverterParameter='warning'}" Click="Button_Click">
+                        <fa:FontAwesome Icon="Warning" FontSize="50" Foreground="Orange"/>
+                    </Button>
+                    <Button Width="100" Height="100" Background="Transparent" BorderBrush="Transparent" Visibility="{Binding Type, Converter={StaticResource TypeToVisibilityConverter}, ConverterParameter='info'}"  Click="Button_Click">
+                        <fa:FontAwesome Icon="InfoCircle" FontSize="50" Foreground="#1771b4"/>
+                    </Button>
+                    <Button Width="100" Height="100" Background="Transparent" BorderBrush="Transparent" Visibility="{Binding Type, Converter={StaticResource TypeToVisibilityConverter}, ConverterParameter='error'}"  Click="Button_Click">
+                        <fa:FontAwesome Icon="Close" FontSize="50" Foreground="Red"/>
+                    </Button>
+                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding Text}"/>
+                </StackPanel>
+            </Grid>
+            <Grid Grid.Row="1">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                    <Button Background="#4d4d4f" Foreground="White" BorderThickness="0"  Width="100" Height="50" Margin="5">
+                        <StackPanel>
+                            <fa:FontAwesome Icon="CheckCircle" FontSize="25" Foreground="White"/>
+                            <Label Content="확인" Foreground="White" />
+                        </StackPanel>
+                    </Button>
+
+                    <Button Background="#eeeeee" Foreground="#4d4d4f" BorderThickness="0"  Width="100" Height="50" Margin="5"  CommandParameter="{}">
+                        <StackPanel>
+                            <fa:FontAwesome Icon="WindowClose" FontSize="25" Foreground="#4d4d4f"/>
+                            <Label Content="취소" Foreground="#4d4d4f"  />
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>
