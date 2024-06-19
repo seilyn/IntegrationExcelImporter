@@ -31,6 +31,15 @@
                 </StackPanel>
             </StackPanel>
 
+            <StackPanel Orientation="Horizontal">
+                <StackPanel Margin="10 0 0 0" Orientation="Vertical">
+                    <Button Background="Transparent" Foreground="#4d4d4f" BorderThickness="0"  Width="60" Height="60" Command="{Binding CreateExcelFileCommand}" >
+                        <fa:FontAwesome Icon="FileExcelOutline" FontSize="40" />
+                    </Button>
+                    <TextBlock Foreground="#4d4d4f" Text="파일 생성" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 5 0 0"/>
+                </StackPanel>
+            </StackPanel>
+
             <StackPanel Margin="10 0 0 0" Orientation="Vertical">
                 <Button Background="Transparent" Foreground="#4d4d4f" BorderThickness="0"  Width="60" Height="60" Command="{Binding OpenSettingWindowCommand}" >
                     <fa:FontAwesome Icon="Gear" FontSize="40" />

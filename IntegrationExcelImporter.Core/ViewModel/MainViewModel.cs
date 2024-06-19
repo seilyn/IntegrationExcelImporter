@@ -94,6 +94,7 @@ namespace IntegrationExcelImporter.Core.ViewModel
         public ICommand WindowsMinimizeCommand { get; set; }
         public ICommand OpenSettingWindowCommand { get; set; }
         public ICommand MergeFileCommand { get; set; }
+        public ICommand CreateExcelFileCommand { get; set; }
 
         private Files _selectedFile;
         public Files SelectedFile
@@ -118,8 +119,20 @@ namespace IntegrationExcelImporter.Core.ViewModel
             WindowsMinimizeCommand = new RelayCommand<object>(ExecuteWindowsMinimize, CanWindowsMinimize);
             OpenSettingWindowCommand = new RelayCommand<object>(ExecuteOpenSettingWindow, CanOpenSettingWindow);
             MergeFileCommand = new RelayCommand<object>(ExecuteMergeFile, CanExecuteMergeFile);
+            CreateExcelFileCommand = new RelayCommand<object>(ExecuteCreateExcelFile, CanCreateExcelFile);
             EduPlanGridInfoList = new ObservableCollection<Plan>();
             MergedEduPlanGridList = new ObservableCollection<Plan>();
+        }
+
+        private void ExecuteCreateExcelFile(object obj)
+        {
+            string outputFilePath = @"C:\Users\yoocy\Documents\Test.xlsx";
+            ExcelManager.Instance.WriteMergedDataToNewSheet(MergedEduPlanGridList, outputFilePath);
+        }
+
+        private bool CanCreateExcelFile(object obj)
+        {
+            return true;
         }
 
         private async void ExecuteMergeFile(object obj)
