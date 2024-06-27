@@ -1,4 +1,4 @@
-﻿using IntegrationExcelImporter.Common.DataAccess;
+﻿using IntegrationExcelImporter.Core.DataAccess;
 using IntegrationExcelImporter.Common.Utility;
 using System;
 using System.Collections.Generic;
@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IntegrationExcelImporter.Common.Init
+namespace IntegrationExcelImporter.Core.Init
 {
     public class SQLiteInitalize
     {

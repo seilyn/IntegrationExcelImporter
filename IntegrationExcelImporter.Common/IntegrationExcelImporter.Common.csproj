@@ -48,9 +48,6 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataAccess\SQLiteManager.cs" />
-    <Compile Include="Init\SqliteInitialize.cs" />
-    <Compile Include="Model\Setting.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

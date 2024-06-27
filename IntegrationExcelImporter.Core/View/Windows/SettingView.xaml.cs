@@ -31,5 +31,10 @@ namespace IntegrationExcelImporter.Core.View.Windows
         {
             DragMove();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
     }
 }

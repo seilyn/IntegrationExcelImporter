@@ -38,6 +38,7 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -56,12 +57,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="DataAccess\SqliteInitialize.cs" />
+    <Compile Include="DataAccess\SQLiteManager.cs" />
+    <Compile Include="Model\Setting.cs" />
     <Compile Include="ViewModel\AlertViewModel.cs" />
     <Compile Include="ViewModel\RelayCommand.cs" />
     <Compile Include="DataAccess\ExcelManager.cs" />
     <Compile Include="Model\Plan.cs" />
     <Compile Include="Model\Files.cs" />
-    <Compile Include="Model\Setting.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\SettingViewModel.cs" />
     <Compile Include="View\Components\FileImportGrid.xaml.cs">

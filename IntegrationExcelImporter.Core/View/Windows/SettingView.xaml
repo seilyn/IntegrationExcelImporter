@@ -3,12 +3,16 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:fa="http://schemas.fontawesome.io/icons/"     
+        xmlns:fa="http://schemas.fontawesome.io/icons/" 
+        xmlns:model="clr-namespace:IntegrationExcelImporter.Core.Model" 
+        d:DataContext="{d:DesignInstance Type=model:Setting}"
         WindowStartupLocation="CenterScreen"
         AllowsTransparency="True"
-        mc:Ignorable="d" WindowStyle="None" Width="500" Height="700">
+        mc:Ignorable="d" 
+        WindowStyle="None" 
+        Width="500" 
+        Height="700">
     <Grid>
-
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
@@ -20,21 +24,18 @@
             <RowDefinition Height="0.04*" />
         </Grid.RowDefinitions>
 
-        <!--상단 상태표시줄-->
+        <!-- 상단 상태표시줄 -->
         <Grid Grid.Row="0" Grid.Column="0" Background="#4d4d4f" MouseLeftButtonDown="Grid_MouseLeftButtonDown">
-            
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                 <Label FontSize="14" Foreground="White" Content="설정화면"/>
             </StackPanel>
-
         </Grid>
-        
-        <!--컨텐츠-->
-        <Grid Grid.Row="1" Grid.Column="0">
 
+        <!-- 컨텐츠 -->
+        <Grid Grid.Row="1" Grid.Column="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="150" />
-                <ColumnDefinition Width="150" />
+                <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
 
             <Grid.RowDefinitions>
@@ -50,29 +51,23 @@
                 <RowDefinition Height="35" />
             </Grid.RowDefinitions>
 
-
             <Grid Grid.Row="0" Grid.Column="0">
                 <Label Margin="5" Content="파일별 시트 검색 조건"></Label>
             </Grid>
             <Grid Grid.Row="0" Grid.Column="1">
-                <TextBox Width="120" Margin="5"></TextBox>
+                <TextBox  Margin="5" Text="{Binding SearchKeywords, UpdateSourceTrigger=PropertyChanged}"></TextBox>
             </Grid>
 
             <Grid Grid.Row="1" Grid.Column="0">
                 <Label Margin="5" Content="데이터 생성 정렬 조건"></Label>
-
             </Grid>
-
             <Grid Grid.Row="1" Grid.Column="1">
-                <ComboBox ItemsSource="{Binding SortOptionsDictionary}" DisplayMemberPath="Value" SelectedValuePath="Key" Width="120" Margin="5"></ComboBox>
+                <ComboBox ItemsSource="{Binding SortOptionsDictionary}" DisplayMemberPath="Value" SelectedValuePath="Key" Margin="5"></ComboBox>
             </Grid>
 
             <Grid Grid.Row="2" Grid.Column="0">
                 <Label Margin="5" Content="자동 로그인 설정"></Label>
-
             </Grid>
-          
-
             <Grid Grid.Row="2" Grid.Column="1">
                 <StackPanel Orientation="Horizontal" Margin="5">
                     <RadioButton VerticalContentAlignment="Center" Margin="10 0 0 0">
@@ -87,7 +82,6 @@
             <Grid Grid.Row="3" Grid.Column="0">
                 <Label Margin="5" Content="비어있는 열 검사"></Label>
             </Grid>
-
             <Grid Grid.Row="3" Grid.Column="1" Grid.RowSpan="6">
                 <StackPanel Orientation="Vertical">
                     <CheckBox VerticalContentAlignment="Center" Margin="10 15 0 10" Content="교육종류"></CheckBox>
@@ -97,38 +91,40 @@
                     <CheckBox VerticalContentAlignment="Center" Margin="10 0 0 10" Content="교육기관"></CheckBox>
                     <CheckBox VerticalContentAlignment="Center" Margin="10 0 0 10" Content="수강대상자"></CheckBox>
                     <CheckBox VerticalContentAlignment="Center" Margin="10 0 0 10" Content="소요예산"></CheckBox>
-
                 </StackPanel>
             </Grid>
 
+            <Grid Grid.Row="9" Grid.Column="0">
+                <Label Margin="5" Content="통합파일 저장경로"></Label>
+            </Grid>
+            <Grid Grid.Row="9" Grid.Column="1">
+                <StackPanel Orientation="Horizontal">
+                    <TextBox FontSize="14" Width="200" Margin="5" Text="{Binding SaveFilePath, UpdateSourceTrigger=PropertyChanged}" ></TextBox>
+                    <Button Width="25" Margin="5" Height="25" Content=".." Command="{Binding OpenFolderDialogCommand}"></Button>
+                </StackPanel>
+            </Grid>
         </Grid>
-        
-        <!--저장,취소버튼-->
+
+        <!-- 저장, 취소버튼 -->
         <Grid Grid.Row="2" Grid.Column="0">
-
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-
-                <Button Background="#4d4d4f" Foreground="White" BorderThickness="0"  Width="90" Height="70" Margin="5">
+                <Button Background="#4d4d4f" Foreground="White" BorderThickness="0"  Width="90" Height="70" Margin="5" Command="{Binding SaveOptionsCommand}">
                     <StackPanel>
                         <fa:FontAwesome Icon="Save" FontSize="25" Foreground="White"/>
                         <Label Content="저장" Foreground="White" />
                     </StackPanel>
                 </Button>
 
-                <Button Background="#eeeeee" Foreground="#4d4d4f" BorderThickness="0"  Width="90" Height="70" Margin="5" Command="{Binding CloseSettingWindowCommand}" CommandParameter="{}">
-                    
+                <Button Background="#eeeeee" Foreground="#4d4d4f" BorderThickness="0"  Width="90" Height="70" Margin="5" Click="Button_Click">
                     <StackPanel>
                         <fa:FontAwesome Icon="Ban" FontSize="25" Foreground="#4d4d4f"/>
                         <Label Content="취소" Foreground="#4d4d4f"  />
                     </StackPanel>
                 </Button>
-
             </StackPanel>
         </Grid>
 
-        <!--하단 상태바-->
-        <Grid Grid.Row="3" Grid.Column="0" Background="#4d4d4f">
-            
-        </Grid>
+        <!-- 하단 상태바 -->
+        <Grid Grid.Row="3" Grid.Column="0" Background="#4d4d4f"></Grid>
     </Grid>
 </Window>

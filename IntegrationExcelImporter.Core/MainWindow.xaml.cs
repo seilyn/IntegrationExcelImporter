@@ -1,5 +1,5 @@
 ﻿using IntegrationExcelImporter.Common;
-using IntegrationExcelImporter.Common.Init;
+using IntegrationExcelImporter.Core.Init;
 using IntegrationExcelImporter.Common.Utility;
 using IntegrationExcelImporter.Core.ViewModel;
 using System;
