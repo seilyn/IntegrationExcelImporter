@@ -41,7 +41,7 @@ namespace IntegrationExcelImporter.Core.DataAccess
 
         }
 
-        public List<Plan> ReadEachExcelData(string filePath)
+        public List<Plan> ReadEachExcelData(string filePath, string sheetName)
         {
             List<Plan> eduPlanList = new List<Plan>();
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
@@ -52,7 +52,7 @@ namespace IntegrationExcelImporter.Core.DataAccess
 
                 foreach (var sheet in package.Workbook.Worksheets)
                 {
-                    if (sheet.Name.Contains("교육훈련"))
+                    if (sheet.Name.Contains(sheetName))
                     {
                         worksheet = sheet;
                         break;
@@ -135,7 +135,7 @@ namespace IntegrationExcelImporter.Core.DataAccess
 
             foreach (Files file in fileList)
             {
-                List<Plan> plans = ReadEachExcelData(file.FilePath);
+                List<Plan> plans = ReadEachExcelData(file.FilePath, Setting.Instance.SearchKeywords);
 
                 foreach (var plan in plans)
                 {

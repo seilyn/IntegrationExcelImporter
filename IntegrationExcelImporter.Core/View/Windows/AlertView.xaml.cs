@@ -20,10 +20,12 @@ namespace IntegrationExcelImporter.Core.View.Windows
     /// </summary>
     public partial class AlertView : Window
     {
-        public AlertView()
+       
+        public AlertView(string type, string text)
         {
             InitializeComponent();
-            AlertViewModel alertViewModel = new AlertViewModel();
+            AlertViewModel alertViewModel = new AlertViewModel(type, text);
+            alertViewModel.OnRequestClose += () => Close();
             DataContext = alertViewModel;
         }
 

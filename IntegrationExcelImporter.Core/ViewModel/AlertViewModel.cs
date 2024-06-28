@@ -6,11 +6,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using System.Windows.Threading;
 
 namespace IntegrationExcelImporter.Core.ViewModel
 {
-    public class AlertViewModel : ObservableObjectBase<AlertViewModel> 
+    public class AlertViewModel : ObservableObjectBase<AlertViewModel>
     {
+        private DispatcherTimer _timer;
+
         private string _text;
         private string _type;
 
@@ -33,6 +36,40 @@ namespace IntegrationExcelImporter.Core.ViewModel
                 OnPropertyChanged(p => p.Type);
             }
         }
+
+        public AlertViewModel(string type, string text)
+        {
+            Type = type;
+            Text = text;
+
+
+            // 타이머 초기화 및 설정
+            _timer = new DispatcherTimer();
+            _timer.Interval = TimeSpan.FromSeconds(3); // 3초간의 인터벌 설정
+            _timer.Tick += Timer_Tick;
+            _timer.Start();
+        }
+
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            // 타이머 이벤트에서 실행될 메서드
+            Close();
+        }
+
+        private void Close()
+        {
+            // 타이머 중지
+            _timer.Stop();
+
+            // 여기에 추가적인 클로징 로직을 구현할 수 있습니다.
+
+            // 창 닫기
+            OnRequestClose?.Invoke();
+        }
+
+        // 이벤트를 통해 창 닫기 요청 전달
+        public event Action OnRequestClose;
+
 
     }
 }

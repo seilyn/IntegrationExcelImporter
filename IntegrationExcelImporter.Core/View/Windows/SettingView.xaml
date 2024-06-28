@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:fa="http://schemas.fontawesome.io/icons/" 
         xmlns:model="clr-namespace:IntegrationExcelImporter.Core.Model" 
-        d:DataContext="{d:DesignInstance Type=model:Setting}"
+       
         WindowStartupLocation="CenterScreen"
         AllowsTransparency="True"
         mc:Ignorable="d" 
@@ -84,13 +84,13 @@
             </Grid>
             <Grid Grid.Row="3" Grid.Column="1" Grid.RowSpan="6">
                 <StackPanel Orientation="Vertical">
-                    <CheckBox VerticalContentAlignment="Center" Margin="10 15 0 10" Content="교육종류"></CheckBox>
-                    <CheckBox VerticalContentAlignment="Center" Margin="10 0 0 10" Content="교육과정명"></CheckBox>
-                    <CheckBox VerticalContentAlignment="Center" Margin="10 0 0 10" Content="교육일수"></CheckBox>
-                    <CheckBox VerticalContentAlignment="Center" Margin="10 0 0 10" Content="교육시간"></CheckBox>
-                    <CheckBox VerticalContentAlignment="Center" Margin="10 0 0 10" Content="교육기관"></CheckBox>
-                    <CheckBox VerticalContentAlignment="Center" Margin="10 0 0 10" Content="수강대상자"></CheckBox>
-                    <CheckBox VerticalContentAlignment="Center" Margin="10 0 0 10" Content="소요예산"></CheckBox>
+                    <CheckBox VerticalContentAlignment="Center"  Margin="10 15 0 10" Content="교육종류"></CheckBox>
+                    <CheckBox VerticalContentAlignment="Center"  Margin="10 0 0 10" Content="교육과정명"></CheckBox>
+                    <CheckBox VerticalContentAlignment="Center"  Margin="10 0 0 10" Content="교육일수"></CheckBox>
+                    <CheckBox VerticalContentAlignment="Center"  Margin="10 0 0 10" Content="교육시간"></CheckBox>
+                    <CheckBox VerticalContentAlignment="Center"  Margin="10 0 0 10" Content="교육기관"></CheckBox>
+                    <CheckBox VerticalContentAlignment="Center"  Margin="10 0 0 10" Content="수강대상자"></CheckBox>
+                    <CheckBox VerticalContentAlignment="Center"  Margin="10 0 0 10" Content="소요예산"></CheckBox>
                 </StackPanel>
             </Grid>
 

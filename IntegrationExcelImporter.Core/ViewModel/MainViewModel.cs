@@ -16,6 +16,7 @@ using System.Windows;
 using System.Windows.Input;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
+using IntegrationExcelImporter.Common.Constant;
 
 namespace IntegrationExcelImporter.Core.ViewModel
 {
@@ -137,6 +138,13 @@ namespace IntegrationExcelImporter.Core.ViewModel
 
         private async void ExecuteMergeFile(object obj)
         {
+            if (Files.Count == 0)
+            {
+                AlertView alert = new AlertView("warning", "병합할 데이터가 없습니다.");
+                alert.ShowDialog();
+                return;
+            }
+
             var loadingView = new LoadingView
             {
                 DataContext = this
@@ -152,10 +160,12 @@ namespace IntegrationExcelImporter.Core.ViewModel
                 int totalFiles = Files.Count;
                 int processedFiles = 0;
 
+                
+
                 foreach (var file in Files)
                 {
                     CurrentFileName = file.FileName;
-                    List<Plan> plans = await Task.Run(() => ExcelManager.Instance.ReadEachExcelData(file.FilePath));
+                    List<Plan> plans = await Task.Run(() => ExcelManager.Instance.ReadEachExcelData(file.FilePath, Setting.Instance.SearchKeywords));
 
                     foreach (var plan in plans)
                     {
@@ -233,7 +243,7 @@ namespace IntegrationExcelImporter.Core.ViewModel
         {
             if (SelectedFile != null)
             {
-                List<Plan> eduPlanList = ExcelManager.Instance.ReadEachExcelData(SelectedFile.FilePath);
+                List<Plan> eduPlanList = ExcelManager.Instance.ReadEachExcelData(SelectedFile.FilePath, Setting.Instance.SearchKeywords);
                 EduPlanGridInfoList.Clear();
 
                 foreach (var item in eduPlanList)

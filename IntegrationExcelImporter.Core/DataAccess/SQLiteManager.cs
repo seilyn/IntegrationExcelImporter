@@ -66,17 +66,24 @@ CREATE TABLE MANAGER_OPTION
     UID                        INTEGER PRIMARY KEY AUTOINCREMENT,
     SORT_OPTION                TEXT,
     SEARCH_EXCELSHEETS_KEYWORD TEXT,
-    SAVE_FILE_PATH             TEXT
+    SAVE_FILE_PATH             TEXT,
+    IS_AUTO_LOGIN              TEXT
 );
 
 
 INSERT INTO MANAGER_OPTION
 ( 
-    SORT_OPTION, SEARCH_EXCELSHEETS_KEYWORD, SAVE_FILE_PATH 
+    SORT_OPTION, 
+    SEARCH_EXCELSHEETS_KEYWORD, 
+    SAVE_FILE_PATH,
+    IS_AUTO_LOGIN
 ) 
 VALUES 
 ( 
-    'kind_of_education', '교육훈련', 'C:\Documents' 
+    'kind_of_education',
+    '교육훈련', 
+    'C:\Documents',
+    'N'
 );
 
 
@@ -148,7 +155,7 @@ UPDATE MANAGER_OPTION
             }
         }
 
-        public DataTable SelectOptions()
+        public bool SelectOptions()
         {
             DataTable optionValues = new DataTable();
 
@@ -170,16 +177,26 @@ FROM MANAGER_OPTION;";
                         }
                     }
                 }
+                
+                if (optionValues.Rows.Count > 0)
+                {
+                    DataRow row = optionValues.Rows[0];
 
+                    Setting.Instance.SortOptions = row["SORT_OPTION"].ToString();
+                    Setting.Instance.SearchKeywords = row["SEARCH_EXCELSHEETS_KEYWORD"].ToString();
+                    Setting.Instance.SaveFilePath = row["SAVE_FILE_PATH"].ToString();
+                    Setting.Instance.IsAutoLogin = row["IS_AUTO_LOGIN"].ToString();
+                }
+
+                return true;
 
             }
             catch (Exception ex)
             {
                 Log.Error(ex);
-                return null;
+                return false;
             }
 
-            return optionValues;
         }
 
     }

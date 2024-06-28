@@ -57,7 +57,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="DataAccess\SqliteInitialize.cs" />
+    <Compile Include="Init\Initialize.cs" />
     <Compile Include="DataAccess\SQLiteManager.cs" />
     <Compile Include="Model\Setting.cs" />
     <Compile Include="ViewModel\AlertViewModel.cs" />
@@ -89,6 +89,10 @@
       <DependentUpon>SettingView.xaml</DependentUpon>
     </Compile>
     <Page Include="Resources\ButtonStyleDictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\CheckBoxStyleDictionary.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -28,5 +28,58 @@ namespace IntegrationExcelImporter.Core.Model
                 _dbPath = value;
             }
         }
+
+        private string _sortOptions;
+        public string SortOptions
+        {
+            get { return _sortOptions; }
+            set
+            {
+                _sortOptions = value;
+                OnPropertyChanged(p => p.SortOptions);
+            }
+        }
+
+        private string _searchKeywords;
+        public string SearchKeywords
+        {
+            get => _searchKeywords;
+            set
+            {
+                if (_searchKeywords != value)
+                {
+                    _searchKeywords = value;
+                    OnPropertyChanged(p => p.SearchKeywords);
+                }
+            }
+        }
+        private string _saveFilePath;
+
+        public string SaveFilePath
+        {
+            get => _saveFilePath;
+            set
+            {
+                if (_saveFilePath != value)
+                {
+                    _saveFilePath = value;
+                    OnPropertyChanged(p => p.SaveFilePath);
+                }
+            }
+        }
+
+        private string _isAutoLogin;
+        public string IsAutoLogin
+        {
+            get => _isAutoLogin;
+            set
+            {
+                if (_isAutoLogin != value)
+                {
+                    _isAutoLogin = value;
+                    OnPropertyChanged(p => p.IsAutoLogin);
+                }
+            }
+        }
     }
 }

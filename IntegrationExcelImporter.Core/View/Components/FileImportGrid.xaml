@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
-             mc:Ignorable="d" d:DesignHeight="100" d:DesignWidth="130"
+             mc:Ignorable="d" d:DesignHeight="200" d:DesignWidth="270"
                 >
 
     <Grid Margin="10">
@@ -12,13 +12,16 @@
                   LoadingRow="DataGrid_LoadingRow"
                   SelectedItem="{Binding SelectedFile}"
                   AutoGenerateColumns="False" 
-                  IsReadOnly="True" 
+                  IsReadOnly="False" 
                   VerticalScrollBarVisibility="Visible" 
                   CanUserAddRows="False"
                   SelectionUnit="FullRow"
                   HorizontalScrollBarVisibility="Visible"
                   >
             <DataGrid.Columns>
+                <DataGridCheckBoxColumn ElementStyle="{StaticResource CheckBox}"
+                                        EditingElementStyle="{StaticResource CheckBox}"
+                                        Header="" Binding="{Binding IsSelected, Mode=TwoWay}" Width="80" />
                 <DataGridTextColumn Header="파일명" Binding="{Binding FileName}" Width="*" IsReadOnly="True"/>
                 <DataGridTextColumn Header="파일경로" Binding="{Binding FilePath}" Width="*" IsReadOnly="True" Visibility="Hidden" />
             </DataGrid.Columns>

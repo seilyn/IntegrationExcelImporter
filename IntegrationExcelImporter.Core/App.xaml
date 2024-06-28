@@ -13,6 +13,7 @@
                 <ResourceDictionary Source="Resources/DataGridStyleDictionary.xaml" />
                 <ResourceDictionary Source="Resources/ButtonStyleDictionary.xaml" />
                 <ResourceDictionary Source="Resources/TabControlStyleDictionary.xaml" />
+                <ResourceDictionary Source="Resources/CheckBoxStyleDictionary.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

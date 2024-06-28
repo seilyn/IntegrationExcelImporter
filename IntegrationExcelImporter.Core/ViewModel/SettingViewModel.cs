@@ -10,12 +10,22 @@ namespace IntegrationExcelImporter.Core.ViewModel
 {
     public class SettingViewModel : ObservableObjectBase<SettingViewModel>
     {
+        private Dictionary<Option, string> _sortOptionsDictionary;
+        public Dictionary<Option, string> SortOptionsDictionary
+        {
+            get { return _sortOptionsDictionary; }
+            set
+            {
+                _sortOptionsDictionary = value;
+                OnPropertyChanged(p => p.SortOptionsDictionary);
+            }
+        }
 
         private string _sortOptions;
         public string SortOptions
         {
             get { return _sortOptions; }
-            set 
+            set
             {
                 _sortOptions = value;
                 OnPropertyChanged(p => p.SortOptions);
@@ -50,14 +60,17 @@ namespace IntegrationExcelImporter.Core.ViewModel
             }
         }
 
-        private Dictionary<Option, string> _sortOptionsDictionary;
-        public Dictionary<Option, string> SortOptionsDictionary
+        private string _isAutoLogin;
+        public string IsAutoLogin
         {
-            get { return _sortOptionsDictionary; }
+            get => _isAutoLogin;
             set
             {
-                _sortOptionsDictionary = value;
-                OnPropertyChanged(p => p.SortOptionsDictionary);
+                if (_isAutoLogin != value)
+                {
+                    _isAutoLogin = value;
+                    OnPropertyChanged(p => p.IsAutoLogin);
+                }
             }
         }
 
@@ -70,23 +83,20 @@ namespace IntegrationExcelImporter.Core.ViewModel
             OpenFolderDialogCommand = new RelayCommand<object>(ExecuteOpenFolder, CanOpenFolder);
             SaveOptionsCommand = new RelayCommand<object>(ExecuteSaveOptions, CanSaveOptions);
             SortOptionsDictionary = new Dictionary<Option, string>();
+            SetValues();
             foreach (var item in System.Enum.GetValues(typeof(Option)))
             {
                 SortOptionsDictionary.Add((Option)item, ((Option)item).GetDescription());
             }
-            InitOptions();
-            
-            
         }
 
         private void ExecuteSaveOptions(object obj)
         {
-            bool saveFlag = SQLiteManager.Instance.SaveOptions(SortOptions, SearchKeywords, SaveFilePath);
+            bool saveFlag = SQLiteManager.Instance.SaveOptions(Setting.Instance.SortOptions, Setting.Instance.SearchKeywords, Setting.Instance.SaveFilePath);
 
             if (saveFlag)
             {
-                /// TODO :
-                /// 메시지박스는 추후 커스텀, 바인딩된 메시지박스를 사용함.
+
                 MessageBox.Show("해당 설정값을 저장했습니다.");
             }
             else
@@ -104,12 +114,12 @@ namespace IntegrationExcelImporter.Core.ViewModel
         {
             FolderBrowserDialog dialog = new FolderBrowserDialog
             {
-                SelectedPath = SaveFilePath
+                SelectedPath = Setting.Instance.SaveFilePath
             };
 
             if (dialog.ShowDialog() == DialogResult.OK)
             {
-                SaveFilePath = dialog.SelectedPath;
+                Setting.Instance.SaveFilePath = dialog.SelectedPath;
             }
         }
 
@@ -118,19 +128,14 @@ namespace IntegrationExcelImporter.Core.ViewModel
             return true;
         }
 
-        private void InitOptions()
+        private void SetValues()
         {
-            DataTable dataTable = SQLiteManager.Instance.SelectOptions();
-
-            if (dataTable.Rows.Count > 0)
-            {
-                DataRow row = dataTable.Rows[0];
-
-                //SortOptions = row["SORT_OPTION"].ToString();
-                SearchKeywords = row["SEARCH_EXCELSHEETS_KEYWORD"].ToString();
-                SaveFilePath = row["SAVE_FILE_PATH"].ToString();
-            }
+            SearchKeywords = Setting.Instance.SearchKeywords;
+            SaveFilePath = Setting.Instance.SaveFilePath;
+            SortOptions = Setting.Instance.SortOptions;
+            IsAutoLogin = Setting.Instance.IsAutoLogin;
         }
+      
 
      
     }

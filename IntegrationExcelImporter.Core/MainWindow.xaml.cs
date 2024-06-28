@@ -17,7 +17,7 @@ namespace IntegrationExcelImporter.Core
         public MainWindow()
         {
             InitializeComponent();
-            _ = new SQLiteInitalize();
+            _ = new Initialize();
             
             DataContext = mainViewModel;
             mainViewModel.MergeCompleted += OnMergeCompleted;
@@ -30,8 +30,7 @@ namespace IntegrationExcelImporter.Core
         {
             Dispatcher.Invoke(() =>
             {
-                var tabControl = FindName("_gridTabControl") as TabControl;
-                if (tabControl != null)
+                if (FindName("_gridTabControl") is TabControl tabControl)
                 {
                     tabControl.SelectedIndex = 1;
                 }
