@@ -41,7 +41,7 @@ namespace IntegrationExcelImporter.Core.DataAccess
 
         }
 
-        public List<Plan> ReadEachExcelData(string filePath, string sheetName)
+        public List<Plan> ReadEachExcelData(string filePath)
         {
             List<Plan> eduPlanList = new List<Plan>();
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
@@ -52,7 +52,7 @@ namespace IntegrationExcelImporter.Core.DataAccess
 
                 foreach (var sheet in package.Workbook.Worksheets)
                 {
-                    if (sheet.Name.Contains(sheetName))
+                    if (sheet.Name.Contains(Setting.Instance.SearchKeywords))
                     {
                         worksheet = sheet;
                         break;
@@ -135,7 +135,7 @@ namespace IntegrationExcelImporter.Core.DataAccess
 
             foreach (Files file in fileList)
             {
-                List<Plan> plans = ReadEachExcelData(file.FilePath, Setting.Instance.SearchKeywords);
+                List<Plan> plans = ReadEachExcelData(file.FilePath);
 
                 foreach (var plan in plans)
                 {
@@ -152,17 +152,8 @@ namespace IntegrationExcelImporter.Core.DataAccess
 
             using (var package = new ExcelPackage(new FileInfo(outputFilePath)))
             {
-                ExcelWorksheet worksheet = package.Workbook.Worksheets.Add("TestSheet");
-
-                /// 헤더 나중에 마스터데이터로 따로 뺀다.
-                string[] headers = new string[]
-                {
-                    "교육종류", "교육과정명", "교육일수", "교육시간", "교육기관",
-                    "소속팀", "직위", "성명", "수강료", "출장비", "계", "1", "2",
-                    "3", "4", "5", "6", "7", "8", "9", "10", "11",
-                    "12", "교육장소", "교육 신청 사유\n(교육 필요성)", "실무 적용 계획\n(교육 기대 효과)"
-                };
-
+                ExcelWorksheet worksheet = package.Workbook.Worksheets.Add("통합");
+        
                 // 교육훈련계획서 제목
                 var title = worksheet.Cells["A1:Z2"];
                 title.Merge = true;

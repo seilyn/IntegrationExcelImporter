@@ -45,7 +45,7 @@ namespace IntegrationExcelImporter.Core.ViewModel
 
             // 타이머 초기화 및 설정
             _timer = new DispatcherTimer();
-            _timer.Interval = TimeSpan.FromSeconds(3); // 3초간의 인터벌 설정
+            _timer.Interval = TimeSpan.FromSeconds(3); 
             _timer.Tick += Timer_Tick;
             _timer.Start();
         }
@@ -61,7 +61,6 @@ namespace IntegrationExcelImporter.Core.ViewModel
             // 타이머 중지
             _timer.Stop();
 
-            // 여기에 추가적인 클로징 로직을 구현할 수 있습니다.
 
             // 창 닫기
             OnRequestClose?.Invoke();

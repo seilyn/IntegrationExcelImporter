@@ -127,8 +127,7 @@ namespace IntegrationExcelImporter.Core.ViewModel
 
         private void ExecuteCreateExcelFile(object obj)
         {
-            string outputFilePath = @"C:\Users\yoocy\Documents\Test.xlsx";
-            ExcelManager.Instance.WriteMergedDataToNewSheet(MergedEduPlanGridList, outputFilePath);
+            ExcelManager.Instance.WriteMergedDataToNewSheet(MergedEduPlanGridList, Setting.Instance.SaveFilePath + "/" + Setting.Instance.SaveFileName + ".xlsx");
         }
 
         private bool CanCreateExcelFile(object obj)
@@ -165,7 +164,7 @@ namespace IntegrationExcelImporter.Core.ViewModel
                 foreach (var file in Files)
                 {
                     CurrentFileName = file.FileName;
-                    List<Plan> plans = await Task.Run(() => ExcelManager.Instance.ReadEachExcelData(file.FilePath, Setting.Instance.SearchKeywords));
+                    List<Plan> plans = await Task.Run(() => ExcelManager.Instance.ReadEachExcelData(file.FilePath));
 
                     foreach (var plan in plans)
                     {
@@ -243,7 +242,7 @@ namespace IntegrationExcelImporter.Core.ViewModel
         {
             if (SelectedFile != null)
             {
-                List<Plan> eduPlanList = ExcelManager.Instance.ReadEachExcelData(SelectedFile.FilePath, Setting.Instance.SearchKeywords);
+                List<Plan> eduPlanList = ExcelManager.Instance.ReadEachExcelData(SelectedFile.FilePath);
                 EduPlanGridInfoList.Clear();
 
                 foreach (var item in eduPlanList)

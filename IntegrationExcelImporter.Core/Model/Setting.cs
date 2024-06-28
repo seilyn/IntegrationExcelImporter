@@ -81,5 +81,20 @@ namespace IntegrationExcelImporter.Core.Model
                 }
             }
         }
+
+        private string _saveFileName;
+
+        public string SaveFileName
+        {
+            get => _saveFileName;
+            set
+            {
+                if (_saveFileName != value)
+                {
+                    _saveFileName = value;
+                    OnPropertyChanged(p => p.SaveFileName);
+                }
+            }
+        }
     }
 }

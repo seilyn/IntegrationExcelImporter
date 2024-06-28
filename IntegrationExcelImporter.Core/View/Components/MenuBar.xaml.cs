@@ -10,7 +10,6 @@ namespace IntegrationExcelImporter.Core.View.Components
         public MenuBar()
         {
             InitializeComponent();
-            //this.DataContext = new FileImportGridViewModel();
         }
     }
 }

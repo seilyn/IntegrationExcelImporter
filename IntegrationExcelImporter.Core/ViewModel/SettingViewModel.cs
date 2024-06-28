@@ -1,7 +1,9 @@
 ﻿using IntegrationExcelImporter.Common.Utility;
 using IntegrationExcelImporter.Core.DataAccess;
 using IntegrationExcelImporter.Core.Model;
+using IntegrationExcelImporter.Core.View.Windows;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.Windows.Forms;
 using System.Windows.Input;
@@ -10,16 +12,6 @@ namespace IntegrationExcelImporter.Core.ViewModel
 {
     public class SettingViewModel : ObservableObjectBase<SettingViewModel>
     {
-        private Dictionary<Option, string> _sortOptionsDictionary;
-        public Dictionary<Option, string> SortOptionsDictionary
-        {
-            get { return _sortOptionsDictionary; }
-            set
-            {
-                _sortOptionsDictionary = value;
-                OnPropertyChanged(p => p.SortOptionsDictionary);
-            }
-        }
 
         private string _sortOptions;
         public string SortOptions
@@ -29,6 +21,7 @@ namespace IntegrationExcelImporter.Core.ViewModel
             {
                 _sortOptions = value;
                 OnPropertyChanged(p => p.SortOptions);
+                Setting.Instance.SortOptions = _sortOptions;
             }
         }
 
@@ -42,6 +35,7 @@ namespace IntegrationExcelImporter.Core.ViewModel
                 {
                     _searchKeywords = value;
                     OnPropertyChanged(p => p.SearchKeywords);
+                    Setting.Instance.SearchKeywords = _searchKeywords;
                 }
             }
         }
@@ -56,6 +50,7 @@ namespace IntegrationExcelImporter.Core.ViewModel
                 {
                     _saveFilePath = value;
                     OnPropertyChanged(p => p.SaveFilePath);
+                    Setting.Instance.SaveFilePath = _saveFilePath;
                 }
             }
         }
@@ -70,8 +65,34 @@ namespace IntegrationExcelImporter.Core.ViewModel
                 {
                     _isAutoLogin = value;
                     OnPropertyChanged(p => p.IsAutoLogin);
+                    Setting.Instance.IsAutoLogin = _isAutoLogin;
                 }
             }
+        }
+
+        private string _saveFileName;
+
+        public string SaveFileName
+        {
+            get => _saveFileName;
+            set
+            {
+                if (_saveFileName != value)
+                {
+                    _saveFileName = value;
+                    OnPropertyChanged(p => p.SaveFileName);
+                    Setting.Instance.SaveFileName = _saveFileName;
+                }
+            }
+        }
+
+        private void SetValues()
+        {
+            SearchKeywords = Setting.Instance.SearchKeywords;
+            SaveFilePath = Setting.Instance.SaveFilePath;
+            SortOptions = Setting.Instance.SortOptions;
+            IsAutoLogin = Setting.Instance.IsAutoLogin;
+            SaveFileName = Setting.Instance.SaveFileName;
         }
 
         public ICommand OpenFolderDialogCommand { get; set; }
@@ -82,26 +103,23 @@ namespace IntegrationExcelImporter.Core.ViewModel
         {
             OpenFolderDialogCommand = new RelayCommand<object>(ExecuteOpenFolder, CanOpenFolder);
             SaveOptionsCommand = new RelayCommand<object>(ExecuteSaveOptions, CanSaveOptions);
-            SortOptionsDictionary = new Dictionary<Option, string>();
             SetValues();
-            foreach (var item in System.Enum.GetValues(typeof(Option)))
-            {
-                SortOptionsDictionary.Add((Option)item, ((Option)item).GetDescription());
-            }
+           
         }
 
         private void ExecuteSaveOptions(object obj)
         {
-            bool saveFlag = SQLiteManager.Instance.SaveOptions(Setting.Instance.SortOptions, Setting.Instance.SearchKeywords, Setting.Instance.SaveFilePath);
+            bool saveFlag = SQLiteManager.Instance.SaveOptions(SortOptions, SearchKeywords, SaveFilePath, SaveFileName);
 
             if (saveFlag)
             {
-
-                MessageBox.Show("해당 설정값을 저장했습니다.");
+                AlertView alert = new AlertView("info", "설정값 저장에 성공했습니다.");
+                alert.ShowDialog();
             }
             else
             {
-                MessageBox.Show("설정값 저장에 실패했습니다.");
+                AlertView alert = new AlertView("error", "설정값 저장에 실패했습니다.");
+                alert.ShowDialog();
             }
         }
 
@@ -120,6 +138,7 @@ namespace IntegrationExcelImporter.Core.ViewModel
             if (dialog.ShowDialog() == DialogResult.OK)
             {
                 Setting.Instance.SaveFilePath = dialog.SelectedPath;
+                SaveFilePath = dialog.SelectedPath;
             }
         }
 
@@ -128,15 +147,6 @@ namespace IntegrationExcelImporter.Core.ViewModel
             return true;
         }
 
-        private void SetValues()
-        {
-            SearchKeywords = Setting.Instance.SearchKeywords;
-            SaveFilePath = Setting.Instance.SaveFilePath;
-            SortOptions = Setting.Instance.SortOptions;
-            IsAutoLogin = Setting.Instance.IsAutoLogin;
-        }
       
-
-     
     }
 }

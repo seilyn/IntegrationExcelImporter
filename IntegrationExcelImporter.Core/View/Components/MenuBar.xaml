@@ -4,19 +4,20 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:fa="http://schemas.fontawesome.io/icons/"
-             mc:Ignorable="d" >
+             mc:Ignorable="d" 
+             Background="#EEEEEE">
     <Grid>
 
         <StackPanel Orientation="Horizontal" Margin="10">
             <StackPanel Orientation="Vertical">
-                <Button Background="Transparent" Foreground="#4d4d4f" ClickMode="Press" BorderThickness="0"  Width="60" Height="60" >
+                <Button Style="{StaticResource MenuBarButtonStyle}" Background="Transparent" Foreground="#4d4d4f" ClickMode="Press" BorderThickness="0"  Width="60" Height="60" >
                     <fa:FontAwesome Icon="File" FontSize="40" />
                 </Button>
                 <TextBlock Foreground="#4d4d4f" Text="새 파일" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 5 0 0"/>
             </StackPanel>
 
             <StackPanel Margin="10 0 0 0" Orientation="Vertical">
-                <Button Background="Transparent" Foreground="#4d4d4f" BorderThickness="0"  Width="60" Height="60" Command="{Binding OpenFileCommand}" >
+                <Button Style="{StaticResource MenuBarButtonStyle}" Background="Transparent" Foreground="#4d4d4f" BorderThickness="0"  Width="60" Height="60" Command="{Binding OpenFileCommand}" >
                     <fa:FontAwesome Icon="FolderOpen" FontSize="40" />
                 </Button>
                 <TextBlock Foreground="#4d4d4f" Text="폴더 열기" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 5 0 0"/>
@@ -24,7 +25,7 @@
 
             <StackPanel Orientation="Horizontal">
                 <StackPanel Margin="10 0 0 0" Orientation="Vertical">
-                    <Button Background="Transparent" Foreground="#4d4d4f" BorderThickness="0"  Width="60" Height="60" Command="{Binding MergeFileCommand}" >
+                    <Button Style="{StaticResource MenuBarButtonStyle}" Background="Transparent" Foreground="#4d4d4f" BorderThickness="0"  Width="60" Height="60" Command="{Binding MergeFileCommand}" >
                         <fa:FontAwesome Icon="Play" FontSize="40" />
                     </Button>
                     <TextBlock Foreground="#4d4d4f" Text="통합하기" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 5 0 0"/>
@@ -33,7 +34,7 @@
 
             <StackPanel Orientation="Horizontal">
                 <StackPanel Margin="10 0 0 0" Orientation="Vertical">
-                    <Button Background="Transparent" Foreground="#4d4d4f" BorderThickness="0"  Width="60" Height="60" Command="{Binding CreateExcelFileCommand}" >
+                    <Button Style="{StaticResource MenuBarButtonStyle}" Background="Transparent" Foreground="#4d4d4f" BorderThickness="0"  Width="60" Height="60" Command="{Binding CreateExcelFileCommand}" >
                         <fa:FontAwesome Icon="FileExcelOutline" FontSize="40" />
                     </Button>
                     <TextBlock Foreground="#4d4d4f" Text="파일 생성" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 5 0 0"/>
@@ -41,49 +42,11 @@
             </StackPanel>
 
             <StackPanel Margin="10 0 0 0" Orientation="Vertical">
-                <Button Background="Transparent" Foreground="#4d4d4f" BorderThickness="0"  Width="60" Height="60" Command="{Binding OpenSettingWindowCommand}" >
+                <Button Style="{StaticResource MenuBarButtonStyle}" Background="Transparent" Foreground="#4d4d4f" BorderThickness="0"  Width="60" Height="60" Command="{Binding OpenSettingWindowCommand}" >
                     <fa:FontAwesome Icon="Gear" FontSize="40" />
                 </Button>
                 <TextBlock Foreground="#4d4d4f" Text="설 정" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 5 0 0"/>
             </StackPanel>
-
-            <Separator Width="1.5" Height="Auto" Margin="10 0 0 0" Background="#C2BFBC" Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" >
-
-            </Separator>
-
-            <StackPanel Margin="10 0 0 0" Orientation="Vertical">
-                <Button Background="Transparent" Foreground="#4d4d4f" BorderThickness="0"  Width="60" Height="60" Command="{Binding OpenSettingWindowCommand}" >
-                    <fa:FontAwesome Icon="SortAmountAsc" FontSize="40" />
-                </Button>
-                <TextBlock Foreground="#4d4d4f" Text="정렬" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 5 0 0"/>
-            </StackPanel>
-
-
-            <StackPanel Margin="10 0 0 0" Orientation="Vertical">
-                <Button Background="Transparent" Foreground="#4d4d4f" BorderThickness="0"  Width="60" Height="60" Command="{Binding OpenSettingWindowCommand}" >
-                    <fa:FontAwesome Icon="Gears" FontSize="40" />
-                </Button>
-                <TextBlock Foreground="#4d4d4f" Text="정렬옵션" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 5 0 0"/>
-            </StackPanel>
-
-            <Separator Width="1.5" Height="Auto" Margin="10 0 0 0" Background="#C2BFBC" Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" >
-
-            </Separator>
-
-            <!--<StackPanel Margin="10 0 0 0" Orientation="Vertical">
-                <Button Background="Transparent" Foreground="#4d4d4f" BorderThickness="0"  Width="60" Height="60" >
-                    <fa:FontAwesome Icon="Gears" FontSize="40" />
-                </Button>
-                <TextBlock Foreground="#4d4d4f" Text="개발자도구" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 5 0 0"/>
-            </StackPanel>-->
-
-            <StackPanel Margin="10 0 0 0" Orientation="Vertical">
-                <Button Background="Transparent" Foreground="#4d4d4f" BorderThickness="0"  Width="60" Height="60" >
-                    <fa:FontAwesome Icon="InfoCircle" FontSize="40" />
-                </Button>
-                <TextBlock Foreground="#4d4d4f" Text="프로그램 정보" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 5 0 0"/>
-            </StackPanel>
-
         </StackPanel>
     </Grid>
 </UserControl>

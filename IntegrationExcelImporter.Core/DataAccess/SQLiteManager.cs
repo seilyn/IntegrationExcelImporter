@@ -67,7 +67,8 @@ CREATE TABLE MANAGER_OPTION
     SORT_OPTION                TEXT,
     SEARCH_EXCELSHEETS_KEYWORD TEXT,
     SAVE_FILE_PATH             TEXT,
-    IS_AUTO_LOGIN              TEXT
+    IS_AUTO_LOGIN              TEXT,
+    SAVE_FILE_NAME             TEXT
 );
 
 
@@ -76,14 +77,16 @@ INSERT INTO MANAGER_OPTION
     SORT_OPTION, 
     SEARCH_EXCELSHEETS_KEYWORD, 
     SAVE_FILE_PATH,
-    IS_AUTO_LOGIN
+    IS_AUTO_LOGIN,
+    SAVE_FILE_NAME
 ) 
 VALUES 
 ( 
-    'kind_of_education',
+    'null',
     '교육훈련', 
     'C:\Documents',
-    'N'
+    'N',
+    'TestData'
 );
 
 
@@ -126,8 +129,13 @@ VALUES
             }
         }
 
-        public bool SaveOptions(string sortOption, string searchKeyword, string saveFilePath)
+        public bool SaveOptions(string sortOption, string searchKeyword, string saveFilePath, string saveFileName)
         {
+
+            SQLiteConnection connection = new SQLiteConnection("Data Source=" + Setting.Instance.DbPath);
+            connection.Open();
+            SQLiteTransaction transaction = connection.BeginTransaction();
+
             try
             {
                 string query = string.Format(@"
@@ -136,15 +144,18 @@ UPDATE MANAGER_OPTION
 
    SET SORT_OPTION                    = '{0}',
        SEARCH_EXCELSHEETS_KEYWORD     = '{1}', 
-       SAVE_FILE_PATH                 = '{2}'
+       SAVE_FILE_PATH                 = '{2}', 
+       SAVE_FILE_NAME                 = '{3}'
 
-", sortOption, searchKeyword, saveFilePath);
+", sortOption, searchKeyword, saveFilePath, saveFileName);
 
-                SQLiteConnection connection = new SQLiteConnection("Data Source=" + Setting.Instance.DbPath);
-                connection.Open();
+              
+
 
                 SQLiteCommand command = new SQLiteCommand(query, connection);
                 command.ExecuteNonQuery();
+                transaction.Commit();
+                Log.Info(query);
 
                 return true;
             }
@@ -152,6 +163,10 @@ UPDATE MANAGER_OPTION
             {
                 Log.Error(ex);
                 return false;
+            }
+            finally
+            {
+                connection.Close();
             }
         }
 
@@ -163,7 +178,12 @@ UPDATE MANAGER_OPTION
             {
                 string query = @"
 
-SELECT SORT_OPTION, SEARCH_EXCELSHEETS_KEYWORD, SAVE_FILE_PATH
+SELECT SORT_OPTION,
+       SEARCH_EXCELSHEETS_KEYWORD, 
+       SAVE_FILE_PATH,
+       IS_AUTO_LOGIN,
+       SAVE_FILE_NAME
+
 FROM MANAGER_OPTION;";
 
                 using (SQLiteConnection connection = new SQLiteConnection("Data Source=" + Setting.Instance.DbPath))
@@ -186,8 +206,11 @@ FROM MANAGER_OPTION;";
                     Setting.Instance.SearchKeywords = row["SEARCH_EXCELSHEETS_KEYWORD"].ToString();
                     Setting.Instance.SaveFilePath = row["SAVE_FILE_PATH"].ToString();
                     Setting.Instance.IsAutoLogin = row["IS_AUTO_LOGIN"].ToString();
+                    Setting.Instance.SaveFileName = row["SAVE_FILE_NAME"].ToString();
                 }
 
+                Log.Info("설정값을 불러왔습니다.");
+                Log.Info(query);
                 return true;
 
             }

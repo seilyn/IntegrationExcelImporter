@@ -36,5 +36,15 @@ namespace IntegrationExcelImporter.Core.View.Windows
         {
             Close();
         }
+
+        private void SettingView_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Escape)
+            {
+                Close();
+            }
+        }
+
+
     }
 }
