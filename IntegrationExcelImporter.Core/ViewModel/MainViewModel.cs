@@ -127,8 +127,51 @@ namespace IntegrationExcelImporter.Core.ViewModel
 
         private void ExecuteCreateExcelFile(object obj)
         {
-            ExcelManager.Instance.WriteMergedDataToNewSheet(MergedEduPlanGridList, Setting.Instance.SaveFilePath + "/" + Setting.Instance.SaveFileName + ".xlsx");
+            string filePath = Setting.Instance.SaveFilePath + "/" + Setting.Instance.SaveFileName + ".xlsx";
+
+            if (File.Exists(filePath))
+            {
+                AlertView alert = new AlertView(GlobalConstantText.ALERT_TYPE_ERROR, GlobalErrorMessage.DUPLICATE_FILENAME_EXCEPTION);
+                alert.ShowDialog();
+                return;
+            }
+            else
+            {
+                if (ExcelManager.Instance.WriteMergedDataToNewSheet(MergedEduPlanGridList, filePath))
+                {
+                    AlertView alert = new AlertView(GlobalConstantText.ALERT_TYPE_INFO, GlobalSuccessMessage.SUCCESS_CREATE_MERGED_EXCELDATA);
+                    alert.ShowDialog();
+
+                }
+          
+                //LoadingSpinner spinner = new LoadingSpinner();
+                //spinner.Show();
+
+                //bool isSuccess = false;
+
+                //try
+                //{
+                //    isSuccess = await Task.Run(() => ExcelManager.Instance.WriteMergedDataToNewSheet(MergedEduPlanGridList, filePath));
+                //}
+                //finally
+                //{
+                //    // Dispatcher를 사용하여 UI 스레드에서 spinner.Close()를 호출
+                //    Application.Current.Dispatcher.Invoke(() => spinner.Close());
+                //}
+
+                //// Dispatcher를 사용하여 UI 스레드에서 AlertView를 표시
+                //Application.Current.Dispatcher.Invoke(() =>
+                //{
+                //    if (isSuccess)
+                //    {
+                //        AlertView alert = new AlertView(GlobalConstantText.ALERT_TYPE_INFO, GlobalSuccessMessage.SUCCESS_CREATE_MERGED_EXCELDATA);
+                //        alert.ShowDialog();
+                //    }
+                //});
+            }
         }
+
+
 
         private bool CanCreateExcelFile(object obj)
         {

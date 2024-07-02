@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace IntegrationExcelImporter.Common.Constant
 {
-    public static class ConstantText
+    public static class GlobalErrorMessage
     {
-        const string ZERO_SELECTED_MESSAGE = "선택된 항목이 없습니다.";
+        public const string DUPLICATE_FILENAME_EXCEPTION = "같은 이름의 파일이 존재합니다.";
     }
 }

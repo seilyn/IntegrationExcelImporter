@@ -48,7 +48,9 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Constant\ConstantText.cs" />
+    <Compile Include="Constant\GlobalConstantText.cs" />
+    <Compile Include="Constant\GlobalErrorMessage.cs" />
+    <Compile Include="Constant\GlobalSuccessMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
