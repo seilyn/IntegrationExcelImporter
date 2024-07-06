@@ -17,6 +17,7 @@ using System.Windows.Input;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using IntegrationExcelImporter.Common.Constant;
+using System.Reflection;
 
 namespace IntegrationExcelImporter.Core.ViewModel
 {
@@ -87,6 +88,20 @@ namespace IntegrationExcelImporter.Core.ViewModel
             }
         }
 
+        private string _assemblyVersion;
+        public string AssemblyVersion
+        {
+            get => _assemblyVersion;
+            set
+            {
+                if (_assemblyVersion != value)
+                {
+                    _assemblyVersion = value;
+                    OnPropertyChanged(nameof(AssemblyVersion));
+                }
+            }
+        }
+
         public ICommand OpenFileCommand { get; set; }
         public ICommand SelectFileCommand { get; set; }
         public ICommand FileImportGridLoadingRowCommand { get; set; }
@@ -113,6 +128,7 @@ namespace IntegrationExcelImporter.Core.ViewModel
 
         public MainViewModel()
         {
+            AssemblyVersion = GetAssemblyVersion();
             OpenFileCommand = new RelayCommand<object>(ExecuteOpenFileButton, CanOpenFileButton);
             SelectFileCommand = new RelayCommand<object>(ExecuteSelectFile, CanSelectFile);
             ApplicationCloseCommand = new RelayCommand<object>(ExecuteApplicationClose, CanApplicationClose);
@@ -123,6 +139,13 @@ namespace IntegrationExcelImporter.Core.ViewModel
             CreateExcelFileCommand = new RelayCommand<object>(ExecuteCreateExcelFile, CanCreateExcelFile);
             EduPlanGridInfoList = new ObservableCollection<Plan>();
             MergedEduPlanGridList = new ObservableCollection<Plan>();
+            
+        }
+
+        private string GetAssemblyVersion()
+        {
+            var version = Assembly.GetExecutingAssembly().GetName().Version;
+            return version != null ? version.ToString() : "Version not found";
         }
 
         private void ExecuteCreateExcelFile(object obj)
@@ -142,6 +165,12 @@ namespace IntegrationExcelImporter.Core.ViewModel
                     AlertView alert = new AlertView(GlobalConstantText.ALERT_TYPE_INFO, GlobalSuccessMessage.SUCCESS_CREATE_MERGED_EXCELDATA);
                     alert.ShowDialog();
 
+                }
+                else
+                {
+                    AlertView alert = new AlertView(GlobalConstantText.ALERT_TYPE_INFO, GlobalSuccessMessage.FAILURE_CREATE_MERGED_EXCELDATA);
+                    alert.ShowDialog();
+                    return;
                 }
           
                 //LoadingSpinner spinner = new LoadingSpinner();

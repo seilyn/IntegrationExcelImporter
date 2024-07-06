@@ -19,9 +19,9 @@
                   HorizontalScrollBarVisibility="Visible"
                   >
             <DataGrid.Columns>
-                <DataGridCheckBoxColumn ElementStyle="{StaticResource CheckBox}"
+                <!--<DataGridCheckBoxColumn ElementStyle="{StaticResource CheckBox}"
                                         EditingElementStyle="{StaticResource CheckBox}"
-                                        Header="" Binding="{Binding IsSelected, Mode=TwoWay}" Width="80" />
+                                        Header="" Binding="{Binding IsSelected, Mode=TwoWay}" Width="80" />-->
                 <DataGridTextColumn Header="파일명" Binding="{Binding FileName}" Width="*" IsReadOnly="True"/>
                 <DataGridTextColumn Header="파일경로" Binding="{Binding FilePath}" Width="*" IsReadOnly="True" Visibility="Hidden" />
             </DataGrid.Columns>

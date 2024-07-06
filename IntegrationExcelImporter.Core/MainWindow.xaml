@@ -53,8 +53,8 @@
 
             <Viewbox HorizontalAlignment="Center">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                    <!--버전 추후 바인딩 처리-->
-                    <Label Content="Integration Excel Importer VERSION 1.0.0.1" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="6" Foreground="White"></Label>
+                    <Label Content="Integration Excel Importer" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="6" Foreground="White"></Label>
+                    <Label Content="{Binding AssemblyVersion}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="6" Foreground="White"></Label>
                 </StackPanel>
             </Viewbox>
         </Grid>
@@ -73,7 +73,7 @@
         </Grid>
 
         <!--행 컨트롤 옵션-->
-        <Grid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Background="#eeeeee" Margin="5">
+        <!--<Grid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Background="#eeeeee" Margin="5">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                 <Button Background="Transparent" BorderBrush="{x:Null}" Margin="10 0 0 0">
                     <StackPanel Orientation="Horizontal">
@@ -89,7 +89,7 @@
                     </StackPanel>
                 </Button>
             </StackPanel>
-        </Grid>
+        </Grid>-->
         <!--파일 그리드-->
         <Grid Grid.Row="3" Grid.Column="0">
             <view:FileImportGrid />

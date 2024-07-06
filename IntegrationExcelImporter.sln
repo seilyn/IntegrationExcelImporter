@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntegrationExcelImporter.Co
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntegrationExcelImporter.Common", "IntegrationExcelImporter.Common\IntegrationExcelImporter.Common.csproj", "{FAFB2680-30BE-4962-9B5B-DF275DB9D7D4}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "IntegrationExcelImporter.Setup", "IntegrationExcelImporter.Setup\IntegrationExcelImporter.Setup.vdproj", "{5829998D-06E7-42CC-BEA5-D7B26E2D508D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,8 @@ Global
 		{FAFB2680-30BE-4962-9B5B-DF275DB9D7D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FAFB2680-30BE-4962-9B5B-DF275DB9D7D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FAFB2680-30BE-4962-9B5B-DF275DB9D7D4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5829998D-06E7-42CC-BEA5-D7B26E2D508D}.Debug|Any CPU.ActiveCfg = Debug
+		{5829998D-06E7-42CC-BEA5-D7B26E2D508D}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

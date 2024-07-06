@@ -51,7 +51,7 @@
                 <RowDefinition Height="25" />
                 <RowDefinition Height="35" />
                 <RowDefinition Height="35" />
-                <RowDefinition Height="25" />
+                <RowDefinition Height="35" />
                 <RowDefinition Height="35" />
                 
             </Grid.RowDefinitions>
@@ -68,40 +68,28 @@
             </Grid>
 
 
-            <Grid Grid.Row="2" Grid.Column="0">
-                <Label Margin="5" Content="자동 로그인 설정"></Label>
-            </Grid>
-            <Grid Grid.Row="2" Grid.Column="1">
-                <StackPanel Orientation="Horizontal" Margin="5">
-                    <RadioButton VerticalContentAlignment="Center" Margin="10 0 0 0">
-                        <Label HorizontalAlignment="Center" VerticalAlignment="Center" Content="예"/>
-                    </RadioButton>
-                    <RadioButton VerticalContentAlignment="Center" Margin="10 0 0 0">
-                        <Label HorizontalAlignment="Center"  Content="아니오"/>
-                    </RadioButton>
-                </StackPanel>
-            </Grid>
+           
 
-            <Grid Grid.Row="3" Grid.Column="0">
+            <Grid Grid.Row="2" Grid.Column="0">
                 <Label Margin="5" Content="파일명"></Label>
             </Grid>
 
-            <Grid Grid.Row="3" Grid.Column="1">
+            <Grid Grid.Row="2" Grid.Column="1">
                 <StackPanel Orientation="Horizontal">
                     <TextBox VerticalContentAlignment="Center" FontSize="14" Width="200" Margin="5" Text="{Binding SaveFileName, UpdateSourceTrigger=PropertyChanged}" ></TextBox>
                 </StackPanel>
             </Grid>
 
-            <Grid Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2">
+            <Grid Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2">
                 <Label Margin="20 0 0 0" FontSize="10" Foreground="Red" Content="*파일명은 확장자를 미포함해주세요. 또한 WildCard(*) 같은 특수문자가 들어가면 파일 생성이 안됩니다."></Label>
             </Grid>
             
             
 
-            <Grid Grid.Row="5" Grid.Column="0">
+            <Grid Grid.Row="4" Grid.Column="0">
                 <Label Margin="5" Content="통합파일 저장경로"></Label>
             </Grid>
-            <Grid Grid.Row="5" Grid.Column="1">
+            <Grid Grid.Row="4" Grid.Column="1">
                 <StackPanel Orientation="Horizontal">
                     <TextBox VerticalContentAlignment="Center" FontSize="14" Width="200" Margin="5" Text="{Binding SaveFilePath, UpdateSourceTrigger=PropertyChanged}" ></TextBox>
                     <Button Width="25" Margin="5" Height="25" Content=".." Command="{Binding OpenFolderDialogCommand}"></Button>
